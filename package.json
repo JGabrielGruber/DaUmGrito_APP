@@ -1,8 +1,7 @@
 {
-  "name": "DaUmGrito_APP",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "daumgrito_app",
+  "version": "1.0.0",
+  "author": "JGabriel Gruber",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -55,5 +54,17 @@
     "tslint": "~5.16.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project"
+  "description": "APP para o projeto DaUmGrito, feito como forma de avaliação para a UNC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JGabrielGruber/DaUmGrito_APP.git"
+  },
+  "keywords": [
+    "app"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/JGabrielGruber/DaUmGrito_APP/issues"
+  }
 }
