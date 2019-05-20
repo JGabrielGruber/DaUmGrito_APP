@@ -1,21 +1,22 @@
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Login</ion-card-title>
-      <ion-card-subtitle>Àrea de Acesso ao App</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <form #loginForm="ngForm">
-        <ion-item>
-          <ion-label position="floating">CPF</ion-label>
-          <ion-input required type="number"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input required type="password"></ion-input>
-        </ion-item>
-        <ion-button expand="block" fill="outline" type="Submit">Acessar</ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Login</ion-card-title>
+			<ion-card-subtitle>Àrea de Acesso ao App</ion-card-subtitle>
+		</ion-card-header>
+		<ion-card-content>
+			<form #loginForm="ngForm">
+				<ion-item>
+					<ion-label position="floating">CPF</ion-label>
+					<ion-input name="client_id" required type="number" [(ngModel)]="credentials.client_id"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating">Senha</ion-label>
+					<ion-input name="client_secret" required type="password" [(ngModel)]="credentials.client_secret"></ion-input>
+				</ion-item>
+				<br />
+				<ion-button expand="block" fill="outline" type="Submit" [disabled]="!loginForm.form.valid">Acessar</ion-button>
+			</form>
+		</ion-card-content>
+	</ion-card>
 </ion-content>
