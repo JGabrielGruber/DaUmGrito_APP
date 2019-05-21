@@ -12,22 +12,19 @@ export class AlertService {
 
 	}
 
-	toast(title: string, position: string): void {
-		(await this.toastCtrl.create({ message: title, position: position, duration: 3000 })).present();
+	async toast(title: string, position: string): Promise<void> {
+		(await this.toastCtrl.create({ message: title, position: 'bottom', duration: 3000 })).present();
 	}
 
-	alert(title: string, message: string): void {
-		this.alertCtrl.create({
-			title: title,
+	async alert(title: string, message: string): Promise<void> {
+		(await this.alertCtrl.create({
 			message: message,
-			buttons: ['Ok'],
-			enableBackdropDismiss: false
-		}).present();
+			buttons: ['Ok']
+		})).present();
 	}
 
-	confirm(title: string, message: string, callback: any): void {
-		this.alertCtrl.create({
-			title: title,
+	async confirm(title: string, message: string, callback: any): Promise<void> {
+		(await this.alertCtrl.create({
 			message: message,
 			buttons: [
 				{ text: "Não", role: 'Cancel', handler: () => { console.log('Confirm:Say:No'); } },
@@ -38,7 +35,6 @@ export class AlertService {
 					}
 				}
 			]
-		})
-			.present()
+		})).present()
 	}
 }

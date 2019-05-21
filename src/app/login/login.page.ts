@@ -1,6 +1,6 @@
 import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
-import { NavParams, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-login',
@@ -12,7 +12,6 @@ export class LoginPage implements OnInit {
 
 	constructor(
 		public navCtrl: NavController,
-		public navParams: NavParams,
 		private loginService: LoginService
 	) { }
 
@@ -28,7 +27,9 @@ export class LoginPage implements OnInit {
 			}
 		);
 		if (result.success) {
-			this.loginService.setLogin(result.data);
+			console.log(result.data);
+			
+			//this.loginService.setLogin(result.data);
 			//this.navCtrl.setRoot('TabsPage');
 		}
 	}
