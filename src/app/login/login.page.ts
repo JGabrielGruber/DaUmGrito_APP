@@ -27,9 +27,7 @@ export class LoginPage implements OnInit {
 			}
 		);
 		if (result.success) {
-			console.log(result.data);
-			
-			//this.loginService.setLogin(result.data);
+			this.loginService.setLogin(result.data);
 			//this.navCtrl.setRoot('TabsPage');
 		}
 	}

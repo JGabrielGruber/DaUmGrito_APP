@@ -22,11 +22,17 @@ export class LoginService extends Service<Login>{
 	}
   
 	setLogin(result: any) {
-	  localStorage.setItem(Configs.storageKeys.token, result.token);
+	  localStorage.setItem(Configs.storageKeys.access_token, result.access_token);
+	  localStorage.setItem(Configs.storageKeys.token_type, result.token_type);
+	}
+
+	unsetLogin() {
+		localStorage.setItem(Configs.storageKeys.access_token, "");
+		localStorage.setItem(Configs.storageKeys.token_type, "");
 	}
   
 	isLogin(): boolean {
-	  return (localStorage.getItem(Configs.storageKeys.token) != undefined);
+	  return (localStorage.getItem(Configs.storageKeys.access_token) != undefined && localStorage.getItem(Configs.storageKeys.access_token) != "");
 	}
   
 }
