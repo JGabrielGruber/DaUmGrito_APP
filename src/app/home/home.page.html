@@ -1,14 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+	<ion-buttons slot="start">
+		<ion-menu-button menu="first"></ion-menu-button>
+	</ion-buttons>
+	<ion-title>Title</ion-title>
+</ion-toolbar>
+<ion-menu side="start" menuId="first">
+	<ion-header>
+		<ion-toolbar color="primary">
+			<ion-title>Start Menu</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<ion-list>
+			<ion-item>Menu Item</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-menu>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
-</ion-content>
+<ion-router-outlet main></ion-router-outlet>
