@@ -8,7 +8,7 @@ import { NavController } from '@ionic/angular';
 	styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-	credentials = { client_id: 0, client_secret: '' };
+	credentials = { client_id: null, client_secret: null };
 
 	constructor(
 		public navCtrl: NavController,
@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
 		);
 		if (result.success) {
 			this.loginService.setLogin(result.data);
-			//this.navCtrl.setRoot('TabsPage');
+			this.navCtrl.navigateRoot('/home');
 		}
 	}
 

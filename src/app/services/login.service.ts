@@ -23,7 +23,7 @@ export class LoginService extends Service<Login>{
   
 	setLogin(result: any) {
 	  localStorage.setItem(Configs.storageKeys.access_token, result.access_token);
-	  localStorage.setItem(Configs.storageKeys.token_type, result.token_type);
+	  localStorage.setItem(Configs.storageKeys.token_type, result.token_type.charAt(0).toUpperCase() + result.token_type.slice(1));
 	}
 
 	unsetLogin() {
@@ -31,7 +31,7 @@ export class LoginService extends Service<Login>{
 		localStorage.setItem(Configs.storageKeys.token_type, "");
 	}
   
-	isLogin(): boolean {
+	static isLogin(): boolean {
 	  return (localStorage.getItem(Configs.storageKeys.access_token) != undefined && localStorage.getItem(Configs.storageKeys.access_token) != "");
 	}
   
