@@ -23,7 +23,9 @@ export class LoginPage implements OnInit {
 			{
 				client_id: this.credentials.client_id,
 				client_secret: this.credentials.client_secret,
-				grant_type: "client_credentials"
+				grant_type: "client_credentials",
+				access_token: null,
+				token_type: null
 			}
 		);
 		if (result.success) {
