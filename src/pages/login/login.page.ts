@@ -1,4 +1,4 @@
-import { LoginService } from './../services/login.service';
+import { LoginService } from '../../app/services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
@@ -30,6 +30,10 @@ export class LoginPage implements OnInit {
 			this.loginService.setLogin(result.data);
 			this.navCtrl.navigateRoot('/home');
 		}
+	}
+
+	signUp() {
+		this.navCtrl.navigateRoot('/signup');
 	}
 
 }

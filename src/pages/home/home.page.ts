@@ -1,6 +1,6 @@
-import { Usuario } from './../models/usuario';
-import { UsuarioService } from './../services/usuario.service';
-import { LoginService } from './../services/login.service';
+import { Usuario } from '../../app/models/usuario';
+import { UsuarioService } from '../../app/services/usuario.service';
+import { LoginService } from '../../app/services/login.service';
 import { Component } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 
