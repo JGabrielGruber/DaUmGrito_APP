@@ -7,6 +7,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { StoreModule } from '@ngrx/store';
+import { loginReducers } from './reducers/login';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,7 +20,10 @@ import { AppRoutingModule } from './app-routing.module';
 		BrowserModule,
 		HttpClientModule,
 		IonicModule.forRoot(),
-		AppRoutingModule
+		AppRoutingModule,
+		StoreModule.forRoot({
+			login: loginReducers
+		})
 	],
 	providers: [
 		StatusBar,
