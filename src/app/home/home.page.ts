@@ -1,5 +1,8 @@
+import { Usuario } from './../models/usuario';
+import { UsuarioService } from './../services/usuario.service';
+import { LoginService } from './../services/login.service';
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-home',
@@ -7,8 +10,34 @@ import { MenuController } from '@ionic/angular';
 	styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-	constructor(private menu: MenuController) { }
+	usuario: Usuario = new Usuario();
+
+	constructor(
+		public navCtrl: NavController,
+		private menu: MenuController,
+		private login: LoginService,
+		private usuarioSV: UsuarioService
+	) {
+		this.check();
+	}
 	openFirst() {
 		this.menu.open('first');
+	}
+
+	async check() {
+		let token	= await this.login.getToken();
+		if (token) {
+			let response	= await this.usuarioSV.getData(token);
+			if (response.success) {
+				this.usuario	= response.data;
+			}
+		} else {
+			this.navCtrl.navigateRoot('/login');
+		}
+	}
+
+	async logOff() {
+		await this.login.unsetLogin();
+		this.navCtrl.navigateRoot('/login');
 	}
 }
