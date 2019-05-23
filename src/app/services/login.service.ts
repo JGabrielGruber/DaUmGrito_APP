@@ -22,17 +22,27 @@ export class LoginService extends Service<Login>{
 	}
   
 	setLogin(result: any) {
-	  localStorage.setItem(Configs.storageKeys.access_token, result.access_token);
-	  localStorage.setItem(Configs.storageKeys.token_type, result.token_type.charAt(0).toUpperCase() + result.token_type.slice(1));
+		sessionStorage.setItem(Configs.storageKeys.access_token, result.access_token);
+		sessionStorage.setItem(Configs.storageKeys.token_type, result.token_type.charAt(0).toUpperCase() + result.token_type.slice(1));
 	}
 
 	unsetLogin() {
-		localStorage.setItem(Configs.storageKeys.access_token, "");
-		localStorage.setItem(Configs.storageKeys.token_type, "");
+		sessionStorage.setItem(Configs.storageKeys.access_token, "");
+		sessionStorage.setItem(Configs.storageKeys.token_type, "");
+	}
+
+	async getToken() {
+		let token = await sessionStorage.getItem(Configs.storageKeys.access_token);
+		if (token != null && token != "") {
+			return await sessionStorage.getItem(Configs.storageKeys.token_type) + ' ' + token;
+		} else {
+			return null;
+		}
+		
 	}
   
 	static isLogin(): boolean {
-	  return (localStorage.getItem(Configs.storageKeys.access_token) != undefined && localStorage.getItem(Configs.storageKeys.access_token) != "");
+	  return (sessionStorage.getItem(Configs.storageKeys.access_token) != undefined && sessionStorage.getItem(Configs.storageKeys.access_token) != "");
 	}
   
 }
