@@ -6,19 +6,19 @@ import { LoadingController } from '@ionic/angular';
 })
 export class SpinnerService {
 
-	private spinner: any = null;
+	private spinner: HTMLIonLoadingElement = null;
 
 	constructor(public loading: LoadingController) {
 
 	}
 
-	Show(message: string): void {
+	async Show(message: string): Promise<void> {
 		if (this.spinner == null) {
-			this.spinner = this.loading.create({ message: (message || 'Carregando...') });
+			this.spinner = await this.loading.create({ message: (message || 'Carregando...') });
 			this.spinner.present();
 		}
 		else {
-			this.spinner.data.message = message;
+			this.spinner.message = message;
 		}
 	}
 

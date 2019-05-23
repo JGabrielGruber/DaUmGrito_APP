@@ -20,7 +20,7 @@ export class HttpService {
 	}
 
 	public get(url: string, token = null): Promise<Http> {
-		//this.spinnerSrv.Show("Carregando os dados...");
+		this.spinnerSrv.Show("Carregando os dados...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
 				let headers	= {};
@@ -45,7 +45,7 @@ export class HttpService {
 	}
 
 	public post(url: string, model: any): Promise<Http> {
-		//this.spinnerSrv.Show("Salvando informações...");
+		this.spinnerSrv.Show("Salvando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
 				this.http.post(url, model)
