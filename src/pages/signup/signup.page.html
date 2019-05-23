@@ -1,9 +1,136 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Cadastro</ion-card-title>
+			<ion-card-subtitle>Àrea para Cadastro no App</ion-card-subtitle>
+		</ion-card-header>
+		<ion-card-content>
+			<form (ngSubmit)="signUp()" #signupForm="ngForm">
+				<h4>informações Gerais</h4>
+				<ion-item>
+					<ion-label position="floating" color="light">CPF</ion-label>
+					<ion-input
+						name="cpf"
+						required
+						type="number"
+						[(ngModel)]="cliente.cpf"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Nome</ion-label>
+					<ion-input
+						name="nome"
+						required
+						type="text"
+						[(ngModel)]="cliente.nome"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Senha</ion-label>
+					<ion-input
+						name="hash"
+						required
+						type="password"
+						[(ngModel)]="cliente.hash"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<h4>Informações de Contato</h4>
+				<ion-item>
+					<ion-label position="floating" color="light">Telefone ou Celular</ion-label>
+					<ion-input
+						name="telefone_um"
+						required
+						type="tel"
+						[(ngModel)]="cliente.contato.telefone_um"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Email</ion-label>
+					<ion-input
+						name="email_um"
+						required
+						type="email"
+						[(ngModel)]="cliente.contato.email_um"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<h4>Informações de Endereço</h4>
+				<ion-item>
+					<ion-label position="floating" color="light">Estado</ion-label>
+					<ion-input
+						name="estado"
+						required
+						type="text"
+						[(ngModel)]="cliente.endereco.estado"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Cidade</ion-label>
+					<ion-input
+						name="cidade"
+						required
+						type="text"
+						[(ngModel)]="cliente.endereco.cidade"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">CEP</ion-label>
+					<ion-input
+						name="cep"
+						required
+						type="number"
+						[(ngModel)]="cliente.endereco.cep"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Bairro</ion-label>
+					<ion-input
+						name="bairro"
+						required
+						type="text"
+						[(ngModel)]="cliente.endereco.bairro"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Rua</ion-label>
+					<ion-input
+						name="rua"
+						required
+						type="text"
+						[(ngModel)]="cliente.endereco.rua"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="light">Número</ion-label>
+					<ion-input
+						name="numero"
+						required
+						type="number"
+						[(ngModel)]="cliente.endereco.numero"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<br />
+				<ion-button
+					expand="block"
+					fill="outline"
+					type="Submit"
+					[disabled]="!signupForm.form.valid"
+					color="primary"
+				>Realizar Cadastro</ion-button>
+			</form>
+		</ion-card-content>
+	</ion-card>
+	<ion-button class="button-shadow" expand="full" fill="solid" (click)="cancel()">
+		Cancelar
+	</ion-button>
 </ion-content>

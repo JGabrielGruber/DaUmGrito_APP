@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Usuario } from './../../app/models/usuario';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
+	selector: 'app-signup',
+	templateUrl: './signup.page.html',
+	styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit {
+export class SignupPage {
+	cliente: Usuario = new Usuario();
 
-  constructor() { }
+	constructor(
+		public navCtrl: NavController
+	) { }
 
-  ngOnInit() {
-  }
+	async signUp(): Promise<void> {
+
+	}
+
+	cancel() {
+		this.navCtrl.navigateRoot('/login');
+	}
 
 }
