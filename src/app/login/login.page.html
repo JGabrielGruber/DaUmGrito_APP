@@ -7,15 +7,33 @@
 		<ion-card-content>
 			<form (ngSubmit)="logIn()" #loginForm="ngForm">
 				<ion-item>
-					<ion-label position="floating">CPF</ion-label>
-					<ion-input name="client_id" required type="number" [(ngModel)]="credentials.client_id"></ion-input>
+					<ion-label position="floating" color="light">CPF</ion-label>
+					<ion-input
+						name="client_id"
+						required
+						type="number"
+						[(ngModel)]="credentials.client_id"
+						color="primary"
+					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating">Senha</ion-label>
-					<ion-input name="client_secret" required type="password" [(ngModel)]="credentials.client_secret"></ion-input>
+					<ion-label position="floating" color="light">Senha</ion-label>
+					<ion-input
+						name="client_secret"
+						required
+						type="password"
+						[(ngModel)]="credentials.client_secret"
+						color="primary"
+					></ion-input>
 				</ion-item>
 				<br />
-				<ion-button expand="block" fill="outline" type="Submit" [disabled]="!loginForm.form.valid">Acessar</ion-button>
+				<ion-button
+					expand="block"
+					fill="outline"
+					type="Submit"
+					[disabled]="!loginForm.form.valid"
+					color="primary"
+				>Acessar</ion-button>
 			</form>
 		</ion-card-content>
 	</ion-card>
