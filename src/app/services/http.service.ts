@@ -19,11 +19,15 @@ export class HttpService {
 
 	}
 
-	public get(url: string): Promise<Http> {
-		this.spinnerSrv.Show("Carregando os dados...");
+	public get(url: string, token = null): Promise<Http> {
+		//this.spinnerSrv.Show("Carregando os dados...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
-				this.http.get(url)
+				let headers	= {};
+				if (token) {
+					headers['Authorization'] = token;
+				}
+				this.http.get(url, { headers })
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });
