@@ -1,5 +1,5 @@
-export interface ReducerInterface {
+export class ReducerModel {
 	isFetching		: boolean;
 	didInvalidate	: boolean;
-	data			: [];
+	data			: any;
 }

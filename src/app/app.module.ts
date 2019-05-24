@@ -13,6 +13,7 @@ import { loginReducers } from './reducers/login.reducer';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { clienteReducers } from './reducers/cliente.reducer';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -23,7 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
 		IonicModule.forRoot(),
 		AppRoutingModule,
 		StoreModule.forRoot({
-			'login': loginReducers
+			'login': loginReducers,
+			'cliente': clienteReducers
 		}),
 		StoreDevtoolsModule.instrument({
 		  maxAge: 10 // number of states to retain

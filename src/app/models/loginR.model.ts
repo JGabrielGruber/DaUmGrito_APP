@@ -1,7 +1,6 @@
+import { ReducerModel } from './../base/Reducer.model';
 import { Login } from './login.model';
 
-export class LoginR implements LoginR {
-	isFetching		: boolean;
-	didInvalidate	: boolean;
-	data			: Login;
+export class LoginR extends ReducerModel {
+	data : Login;
 }
