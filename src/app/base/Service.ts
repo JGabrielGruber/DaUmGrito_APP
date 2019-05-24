@@ -1,4 +1,4 @@
-import { Http } from './../models/http';
+import { Http } from '../models/http.model';
 import { HttpService } from './../services/http.service';
 
 export abstract class Service<T> {

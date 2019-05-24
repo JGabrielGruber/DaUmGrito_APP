@@ -1,5 +1,5 @@
 import { NavController } from '@ionic/angular';
-import { Usuario } from './../../app/models/usuario';
+import { Usuario } from '../../app/models/usuario.model';
 import { Component } from '@angular/core';
 
 @Component({

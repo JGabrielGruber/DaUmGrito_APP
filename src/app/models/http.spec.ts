@@ -1,4 +1,4 @@
-import { Http } from './http';
+import { Http } from './http.model';
 
 describe('Http', () => {
   it('should create an instance', () => {

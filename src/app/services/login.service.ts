@@ -1,7 +1,7 @@
-import { Http } from './../models/http';
+import { Http } from '../models/http.model';
 import { HttpService } from './http.service';
 import { Configs } from './../configs';
-import { Login } from './../models/login';
+import { Login } from '../models/login.model';
 import { Injectable } from '@angular/core';
 import { Service } from '../base/Service';
 

@@ -1,4 +1,4 @@
-import { Http } from './../models/http';
+import { Http } from '../models/http.model';
 import { AlertService } from './alert.service';
 import { NetworkService } from './network.service';
 import { Injectable } from '@angular/core';

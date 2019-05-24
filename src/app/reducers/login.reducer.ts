@@ -1,5 +1,5 @@
-import * as LoginActions from '../actions/login';
-import { Login } from '../models/login'
+import * as LoginActions from '../actions/login.action';
+import { Login } from '../models/login.model'
 
 export type Action = LoginActions.All;
 
