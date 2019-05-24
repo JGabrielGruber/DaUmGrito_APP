@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { loginReducers } from './reducers/login.reducer';
 
 import { AppComponent } from './app.component';
@@ -22,7 +23,10 @@ import { AppRoutingModule } from './app-routing.module';
 		IonicModule.forRoot(),
 		AppRoutingModule,
 		StoreModule.forRoot({
-			login: loginReducers
+			'login': loginReducers
+		}),
+		StoreDevtoolsModule.instrument({
+		  maxAge: 10 // number of states to retain
 		})
 	],
 	providers: [

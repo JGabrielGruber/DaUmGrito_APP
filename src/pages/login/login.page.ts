@@ -1,6 +1,16 @@
-import { LoginService } from '../../app/services/login.service';
+import { LoginR } from './../../app/models/loginR.model';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { Login } from './../../app/models/login.model';
+import { LoginService } from '../../app/services/login.service';
+import * as LoginActions from '../../app/actions/login.action';
+
+interface AppState {
+	login: LoginR
+}
 
 @Component({
 	selector: 'app-login',
@@ -9,27 +19,31 @@ import { NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 	credentials = { client_id: null, client_secret: null };
+	login$: Observable<LoginR>;
 
 	constructor(
 		public navCtrl: NavController,
-		private loginService: LoginService
-	) { }
-
-	ngOnInit() {
+		private loginService: LoginService,
+		private store: Store<AppState>
+	) {
+		this.login$ = this.store.select('login');
 	}
 
+	ngOnInit() {}
+
 	async logIn(): Promise<void> {
-		let result = await this.loginService.auth(
-			{
-				client_id: this.credentials.client_id,
-				client_secret: this.credentials.client_secret,
-				grant_type: "client_credentials",
-				access_token: null,
-				token_type: null
-			}
-		);
-		if (result.success) {
-			this.loginService.setLogin(result.data);
+		let login:Login = {
+			client_id: this.credentials.client_id,
+			client_secret: this.credentials.client_secret,
+			grant_type: "client_credentials",
+			access_token: null,
+			token_type: null
+		}
+		let result = await LoginActions.logIn(login, this.loginService, this.store);
+		if (result && result.success) {
+			this.login$.subscribe((data) => {
+				this.loginService.setLogin(data.data);
+			});
 			this.navCtrl.navigateRoot('/home');
 		}
 	}
