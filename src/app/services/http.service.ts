@@ -56,14 +56,10 @@ export class HttpService {
 						this.spinnerSrv.Hide();
 						console.log(err);
 						if (err.status == 400) {
-							let msg = '';
-							err.error.validation.forEach(_err => {
-								msg += `<li>${_err.message}</li>`;
-							});
-							this.alertSrv.alert(err.error.message, msg);
+							this.alertSrv.alert('Atenção', err.error.error);
 						}
 						else if (err.status == 404) {
-							this.alertSrv.alert('Informação', err.error.message);
+							this.alertSrv.alert('Informação', err.error.error);
 						}
 						else
 							this.alertSrv.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom');

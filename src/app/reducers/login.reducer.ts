@@ -28,16 +28,6 @@ export function loginReducers(state: LoginR = defaultState, action: Action) {
 			return newState(state, { isFetching: false, didInvalidate: false, data: action.payload });
 		case LoginActions.UNSET_LOGIN:
 			return newState(state, defaultState);
-		case LoginActions.EDIT_CLIENT_ID:
-			return defaultState;
-		case LoginActions.EDIT_CLIENT_SECRET:
-			return newState(state, { data: { client_secret: action.payload } });
-		case LoginActions.EDIT_GRANT_TYPE:
-			return newState(state, { data: { grant_type: action.payload } });
-		case LoginActions.EDIT_ACCESS_TOKEN:
-			return newState(state, { data: { access_token: action.payload } });
-		case LoginActions.EDIT_TOKEN_TYPE:
-			return newState(state, { data: { token_type: action.payload } });
 
 		default:
 			return state;
