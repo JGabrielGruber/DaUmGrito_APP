@@ -1,9 +1,9 @@
-import { ClienteR } from './../models/clienteR.model';
+import { ClienteReducer } from './../models/clienteR.model';
 import * as ClienteActions from '../actions/cliente.action';
 
 export type Action = ClienteActions.All;
 
-const defaultState: ClienteR = {
+const defaultState: ClienteReducer = {
 	isFetching		: false,
 	didInvalidate	: false,
 	data			: {
@@ -32,7 +32,7 @@ const newState = (state, newData) => {
 	return Object.assign({}, state, newData);
 }
 
-export function clienteReducers(state: ClienteR = defaultState, action: Action) {
+export function clienteReducers(state: ClienteReducer = defaultState, action: Action) {
 
 	switch (action.type) {
 		case ClienteActions.REQUEST_CLIENTE:

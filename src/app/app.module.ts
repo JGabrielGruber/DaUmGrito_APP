@@ -10,10 +10,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { loginReducers } from './reducers/login.reducer';
+import { clienteReducers } from './reducers/cliente.reducer';
+import { chamadoRedcuers } from './reducers/chamado.reducer';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { clienteReducers } from './reducers/cliente.reducer';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { clienteReducers } from './reducers/cliente.reducer';
 		AppRoutingModule,
 		StoreModule.forRoot({
 			'login': loginReducers,
-			'cliente': clienteReducers
+			'cliente': clienteReducers,
+			'chamado': chamadoRedcuers
 		}),
 		StoreDevtoolsModule.instrument({
 		  maxAge: 10 // number of states to retain

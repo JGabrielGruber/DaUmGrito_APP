@@ -1,6 +1,6 @@
 import { Cliente } from './cliente.model';
 import { ReducerModel } from '../base/Reducer.model';
 
-export class ClienteR extends ReducerModel {
+export class ClienteReducer extends ReducerModel {
 	data : Cliente;
 }
