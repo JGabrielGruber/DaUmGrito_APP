@@ -25,7 +25,8 @@ export async function fetchClientesIfNeeded(clienteService: ClienteService, stor
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {
+	if (!isFetching) {
+		store.dispatch(new RequestCliente());
 		return await clienteService.get();
 	}
 }
@@ -35,7 +36,7 @@ export async function putCliente(clienteService: ClienteService, store: any, cli
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {
+	if (!isFetching) {
 		return await clienteService.put(cliente._id, cliente);
 	}
 }
@@ -45,8 +46,15 @@ export async function postCliente(clienteService: ClienteService, store: any, cl
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {
-		return await clienteService.post(cliente);
+	if (!isFetching) {
+		store.dispatch(new RequestCliente());
+		let result = await clienteService.post(cliente);
+		if (result.success) {
+			store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: false, data: cliente }));
+		} else {
+			store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: true, data: new Cliente() }));
+		}
+		return result;
 	}
 }
 
@@ -55,7 +63,7 @@ export async function deleteCliente(clienteService: ClienteService, store: any, 
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {
+	if (!isFetching) {
 		return await clienteService.delete(cliente._id);
 	}
 }
