@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Network } from '@ionic-native/network/ngx';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -30,13 +32,15 @@ import { AppRoutingModule } from './app-routing.module';
 			'chamado': chamadoRedcuers
 		}),
 		StoreDevtoolsModule.instrument({
-		  maxAge: 10 // number of states to retain
+			maxAge: 10
 		})
 	],
 	providers: [
 		StatusBar,
 		SplashScreen,
-		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+		Geolocation,
+		Network
 	],
 	bootstrap: [AppComponent]
 })

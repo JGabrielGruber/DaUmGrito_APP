@@ -1,5 +1,6 @@
 import { Chamado } from './../../../app/models/chamado.model';
 import { Component, OnInit } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
 	selector: 'app-formulario',
@@ -9,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class FormularioPage implements OnInit {
 	chamado: Chamado = new Chamado();
 
-	constructor() { }
+	constructor(
+		private geolocation: Geolocation
+	) { }
 
 	ngOnInit() {
+		this.geolocation.getCurrentPosition().then((resp) => {
+			this.chamado.localizacao.latitude	= resp.coords.latitude;
+			this.chamado.localizacao.longitude	= resp.coords.longitude;
+		}).catch((error) => {
+			alert("Problema ao obter sua localização");
+		});
 	}
 
 	async takePicture(): Promise<void> {

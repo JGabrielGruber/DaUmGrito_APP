@@ -6,7 +6,10 @@ export class Chamado {
 	responsavel	: null;
 	titulo		: string;
 	descricao	: string;
-	localizacao	: string;
+	localizacao	: {
+		latitude	: number;
+		longitude	: number;
+	};
 	foto		: string;
 	resolucoes	: [];
 	timestamp	: string;
