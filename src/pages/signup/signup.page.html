@@ -39,14 +39,14 @@
 				</ion-item>
 				<ion-label color="light">Foto de Perfil</ion-label>
 				<ion-item text-center>
-						<ion-avatar slot="start" *ngIf="cliente.foto">
-							<img [src]="cliente.foto" />
-						</ion-avatar>
-						<ion-button (click)="takePicture()">
-							<ion-icon slot="start" name="camera"></ion-icon>
-							Selecionar
-						</ion-button>
-					</ion-item>
+					<ion-avatar slot="start" *ngIf="cliente.foto">
+						<img [src]="cliente.foto" />
+					</ion-avatar>
+					<ion-button (click)="takePicture()">
+						<ion-icon slot="start" name="camera"></ion-icon>
+						Selecionar
+					</ion-button>
+				</ion-item>
 				<h4>Informações de Contato</h4>
 				<ion-item>
 					<ion-label position="floating" color="light">Telefone ou Celular</ion-label>
