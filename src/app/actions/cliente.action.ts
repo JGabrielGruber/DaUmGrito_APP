@@ -1,4 +1,4 @@
-import { ClienteR } from './../models/clienteR.model';
+import { ClienteReducer } from './../models/clienteR.model';
 import { Cliente } from './../models/cliente.model';
 import { ClienteService } from './../services/cliente.service';
 import { Action } from '@ngrx/store';
@@ -13,7 +13,7 @@ export class RequestCliente implements Action {
 
 export class ReceiveCliente implements Action {
 	readonly type = RECEIVE_CLIENTE;
-	constructor(public payload: ClienteR) {}
+	constructor(public payload: ClienteReducer) {}
 }
 
 export class UnsetCliente implements Action {
@@ -25,7 +25,9 @@ export async function fetchClientesIfNeeded(clienteService: ClienteService, stor
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await clienteService.get();
+	}
 }
 
 export async function putCliente(clienteService: ClienteService, store: any, cliente: Cliente) {
@@ -33,7 +35,9 @@ export async function putCliente(clienteService: ClienteService, store: any, cli
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await clienteService.put(cliente._id, cliente);
+	}
 }
 
 export async function postCliente(clienteService: ClienteService, store: any, cliente: Cliente) {
@@ -41,7 +45,9 @@ export async function postCliente(clienteService: ClienteService, store: any, cl
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await clienteService.post(cliente);
+	}
 }
 
 export async function deleteCliente(clienteService: ClienteService, store: any, cliente: Cliente) {
@@ -49,7 +55,9 @@ export async function deleteCliente(clienteService: ClienteService, store: any, 
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await clienteService.delete(cliente._id);
+	}
 }
 
 
