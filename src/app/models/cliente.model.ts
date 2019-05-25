@@ -24,6 +24,7 @@ export class Cliente {
 		numnero: null
 	};
 	nome: string;
+	foto: string;
 	notificacoes: [];
 	timestamp: string;
 	timeupdate: string;

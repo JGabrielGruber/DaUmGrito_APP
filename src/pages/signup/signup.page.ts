@@ -2,7 +2,6 @@ import { ClienteService } from './../../app/services/cliente.service';
 import { Cliente } from './../../app/models/cliente.model';
 import { ClienteReducer } from './../../app/models/clienteR.model';
 import { NavController } from '@ionic/angular';
-import { Usuario } from '../../app/models/usuario.model';
 import { Component } from '@angular/core';
 import * as ClienteActions from '../../app/actions/cliente.action';
 import { Observable } from 'rxjs';
@@ -18,7 +17,7 @@ interface AppState {
 	styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage {
-	cliente: Usuario = new Usuario();
+	cliente: Cliente = new Cliente();
 	cliente$: Observable<ClienteReducer>;
 
 	constructor(
@@ -34,6 +33,10 @@ export class SignupPage {
 		if (result && result.success) {
 			this.navCtrl.navigateRoot('/login');
 		}
+	}
+
+	async takePicture(): Promise<void> {
+		this.cliente.foto = "https://cs.uwaterloo.ca/twiki/pub/Main/UserProfileHeader/default-user-profile.jpg";
 	}
 
 	cancel() {

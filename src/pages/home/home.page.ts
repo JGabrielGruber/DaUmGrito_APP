@@ -1,3 +1,4 @@
+import { Cliente } from './../../app/models/cliente.model';
 import { Usuario } from '../../app/models/usuario.model';
 import { UsuarioService } from '../../app/services/usuario.service';
 import { LoginService } from '../../app/services/login.service';
@@ -10,7 +11,7 @@ import { MenuController, NavController } from '@ionic/angular';
 	styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-	usuario: Usuario = new Usuario();
+	usuario: Cliente = new Cliente();
 
 	constructor(
 		public navCtrl: NavController,

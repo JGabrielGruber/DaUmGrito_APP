@@ -22,6 +22,7 @@ const defaultState: ClienteReducer = {
 			numnero: null
 		},
 		nome: null,
+		foto: null,
 		notificacoes: [],
 		timestamp: null,
 		timeupdate: null
