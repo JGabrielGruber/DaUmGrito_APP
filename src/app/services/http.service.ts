@@ -38,7 +38,7 @@ export class HttpService {
 					});
 			}
 			else {
-				this.alertSrv.toast('Você está Offline, e infelizmente não pode ser carregado os dados!', 'bottom');
+				this.alertSrv.toast('Você está Offline, conecte-se a internet!', 'bottom');
 				resolve({ success: true, data: [], err: undefined });
 			}
 		});
@@ -52,6 +52,7 @@ export class HttpService {
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });
+						this.alertSrv.toast('Adicionado com sucesso!', 'bottom');
 					}, err => {
 						this.spinnerSrv.Hide();
 						console.log(err);
@@ -67,7 +68,7 @@ export class HttpService {
 					});
 			}
 			else {
-				this.alertSrv.toast('Você está Offline, e infelizmente não pode ser enviado os dados!', 'bottom');
+				this.alertSrv.toast('Você está Offline, conecte-se a internet!', 'bottom');
 				resolve({ success: true, data: [], err: undefined });
 			}
 		});
