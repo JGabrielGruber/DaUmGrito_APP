@@ -25,7 +25,9 @@ export async function fetchChamadosIfNeeded(chamadoService: ChamadoService, stor
 	await store.select('chamado').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await chamadoService.get();
+	}
 }
 
 export async function putChamado(chamadoService: ChamadoService, store: any, chamado: Chamado) {
@@ -33,7 +35,9 @@ export async function putChamado(chamadoService: ChamadoService, store: any, cha
 	await store.select('chamado').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await chamadoService.put(chamado._id, chamado);
+	}
 }
 
 export async function postChamado(chamadoService: ChamadoService, store: any, chamado: Chamado) {
@@ -41,7 +45,9 @@ export async function postChamado(chamadoService: ChamadoService, store: any, ch
 	await store.select('chamado').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await chamadoService.post(chamado);
+	}
 }
 
 export async function deleteChamado(chamadoService: ChamadoService, store: any, chamado: Chamado) {
@@ -49,7 +55,9 @@ export async function deleteChamado(chamadoService: ChamadoService, store: any, 
 	await store.select('chamado').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
-	if (isFetching) {}
+	if (isFetching) {
+		return await chamadoService.delete(chamado._id);
+	}
 }
 
 
