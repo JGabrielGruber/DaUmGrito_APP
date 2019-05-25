@@ -5,16 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ChamadoPage } from './chamado.page';
+import { FormularioPage } from './formulario.page';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: ChamadoPage
-	},
-	{
-		path: 'formulario',
-		loadChildren: './formulario/formulario.module#FormularioPageModule'
+		component: FormularioPage
 	}
 ];
 
@@ -25,6 +21,6 @@ const routes: Routes = [
 		IonicModule,
 		RouterModule.forChild(routes)
 	],
-	declarations: [ChamadoPage]
+	declarations: [FormularioPage]
 })
-export class ChamadoPageModule { }
+export class FormularioPageModule { }
