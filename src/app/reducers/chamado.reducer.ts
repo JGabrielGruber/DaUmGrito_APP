@@ -11,22 +11,10 @@ const defaultState: ChamadoReducer = {
 		cliente		: {
 			_id: null,
 			contato: {
-				telefone_um: null,
 				email_um: null
 			},
 			cpf: null,
-			endereco: {
-				estado: null,
-				cidade: null,
-				CEP: null,
-				bairro: null,
-				rua: null,
-				numnero: null
-			},
-			nome: null,
-			notificacoes: [],
-			timestamp: null,
-			timeupdate: null
+			nome: null
 		},
 		responsavel	: null,
 		titulo		: null,

@@ -1,8 +1,8 @@
-import { Cliente } from './cliente.model';
+import { ClienteLight } from './clienteL.model';
 
 export class Chamado {
 	_id			: string;
-	cliente		: Cliente;
+	cliente		: ClienteLight;
 	responsavel	: null;
 	titulo		: string;
 	descricao	: string;
