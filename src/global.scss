@@ -10,13 +10,14 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-$primary	:#ffd600;
-$dark	: #222428;
-$light	: #F5F5F5;
+$primary	: linear-gradient(270deg, #FFB341 0%, #FF7A41 100%);
+$text-dark	: #414141;
+$dark	: #212121;
+$light	: #EFEFEF;
 
 ion-content, ion-card, ion-card-header, ion-card-content, ion-router-outlet, ion-item {
-	--background: $dark;
-	background-color: $dark;
+	--background: $light;
+	background-color: $light;
 }
 
 .sc-ion-card-md-h {
@@ -25,8 +26,8 @@ ion-content, ion-card, ion-card-header, ion-card-content, ion-router-outlet, ion
 }
 
 ion-card-title, ion-card-subtitle {
-	--color: $light;
-	color: $light;
+	--color: $text-dark;
+	color: $text-dark;
 }
 
 ion-menu ion-content, ion-menu ion-item, ion-menu ion-list.list-md {

@@ -1,43 +1,17 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Cadastrar</ion-title>
+	</ion-toolbar>
+</ion-header>
 <ion-content>
 	<ion-card>
-		<ion-card-header>
-			<ion-card-title>Cadastro</ion-card-title>
-			<ion-card-subtitle>Àrea para Cadastro no App</ion-card-subtitle>
-		</ion-card-header>
 		<ion-card-content>
 			<form (ngSubmit)="signUp()" #signupForm="ngForm">
 				<h4>informações Gerais</h4>
-				<ion-item>
-					<ion-label position="floating" color="light">CPF</ion-label>
-					<ion-input
-						name="cpf"
-						required
-						type="number"
-						[(ngModel)]="cliente.cpf"
-						color="primary"
-					></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-label position="floating" color="light">Nome</ion-label>
-					<ion-input
-						name="nome"
-						required
-						type="text"
-						[(ngModel)]="cliente.nome"
-						color="primary"
-					></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-label position="floating" color="light">Senha</ion-label>
-					<ion-input
-						name="hash"
-						required
-						type="password"
-						[(ngModel)]="cliente.hash"
-						color="primary"
-					></ion-input>
-				</ion-item>
-				<ion-label color="light">Foto de Perfil</ion-label>
+				<ion-label color="dark">Foto de Perfil</ion-label>
 				<ion-item text-center>
 					<ion-avatar slot="start" *ngIf="cliente.foto">
 						<img [src]="cliente.foto" />
@@ -47,9 +21,39 @@
 						Selecionar
 					</ion-button>
 				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="dark">CPF</ion-label>
+					<ion-input
+						name="cpf"
+						required
+						type="number"
+						[(ngModel)]="cliente.cpf"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="dark">Nome</ion-label>
+					<ion-input
+						name="nome"
+						required
+						type="text"
+						[(ngModel)]="cliente.nome"
+						color="primary"
+					></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating" color="dark">Senha</ion-label>
+					<ion-input
+						name="hash"
+						required
+						type="password"
+						[(ngModel)]="cliente.hash"
+						color="primary"
+					></ion-input>
+				</ion-item>
 				<h4>Informações de Contato</h4>
 				<ion-item>
-					<ion-label position="floating" color="light">Telefone ou Celular</ion-label>
+					<ion-label position="floating" color="dark">Telefone ou Celular</ion-label>
 					<ion-input
 						name="telefone_um"
 						required
@@ -59,7 +63,7 @@
 					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating" color="light">Email</ion-label>
+					<ion-label position="floating" color="dark">Email</ion-label>
 					<ion-input
 						name="email_um"
 						required
@@ -70,7 +74,7 @@
 				</ion-item>
 				<h4>Informações de Endereço</h4>
 				<ion-item>
-					<ion-label position="floating" color="light">Estado</ion-label>
+					<ion-label position="floating" color="dark">Estado</ion-label>
 					<ion-input
 						name="estado"
 						required
@@ -80,7 +84,7 @@
 					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating" color="light">Cidade</ion-label>
+					<ion-label position="floating" color="dark">Cidade</ion-label>
 					<ion-input
 						name="cidade"
 						required
@@ -90,7 +94,7 @@
 					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating" color="light">CEP</ion-label>
+					<ion-label position="floating" color="dark">CEP</ion-label>
 					<ion-input
 						name="cep"
 						required
@@ -100,7 +104,7 @@
 					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating" color="light">Bairro</ion-label>
+					<ion-label position="floating" color="dark">Bairro</ion-label>
 					<ion-input
 						name="bairro"
 						required
@@ -110,7 +114,7 @@
 					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating" color="light">Rua</ion-label>
+					<ion-label position="floating" color="dark">Rua</ion-label>
 					<ion-input
 						name="rua"
 						required
@@ -120,7 +124,7 @@
 					></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label position="floating" color="light">Número</ion-label>
+					<ion-label position="floating" color="dark">Número</ion-label>
 					<ion-input
 						name="numero"
 						required
@@ -132,7 +136,7 @@
 				<br />
 				<ion-button
 					expand="block"
-					fill="outline"
+					fill="solid"
 					type="Submit"
 					[disabled]="!signupForm.form.valid"
 					color="primary"
@@ -140,7 +144,4 @@
 			</form>
 		</ion-card-content>
 	</ion-card>
-	<ion-button class="button-shadow" expand="full" fill="solid" (click)="cancel()">
-		Cancelar
-	</ion-button>
 </ion-content>
