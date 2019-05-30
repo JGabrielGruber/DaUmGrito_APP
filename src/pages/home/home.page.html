@@ -1,9 +1,3 @@
-<ion-toolbar color="secondary">
-	<ion-buttons slot="start">
-		<ion-menu-button menu="first"></ion-menu-button>
-	</ion-buttons>
-	<ion-title>Title</ion-title>
-</ion-toolbar>
 <ion-menu side="start" menuId="first">
 	<ion-header>
 		<ion-toolbar color="light">
@@ -18,8 +12,12 @@
 	<ion-content>
 		<ion-list>
 			<ion-item button>
+				<ion-icon name="map" slot="start"></ion-icon>
+				<ion-label>Mapa de Chamados</ion-label>
+			</ion-item>
+			<ion-item button>
 				<ion-icon name="chatboxes" slot="start"></ion-icon>
-				<ion-label>Chamados</ion-label>
+				<ion-label>Meus Chamados</ion-label>
 			</ion-item>
 			<ion-item button lines="none" (click)="logOff()">
 				<ion-icon name="exit" slot="start"></ion-icon>

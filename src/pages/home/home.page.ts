@@ -1,5 +1,4 @@
 import { Cliente } from './../../app/models/cliente.model';
-import { Usuario } from '../../app/models/usuario.model';
 import { UsuarioService } from '../../app/services/usuario.service';
 import { LoginService } from '../../app/services/login.service';
 import { Component } from '@angular/core';

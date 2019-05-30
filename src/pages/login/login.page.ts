@@ -1,12 +1,12 @@
 import { LoginR } from './../../app/models/loginR.model';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { Login } from './../../app/models/login.model';
 import { LoginService } from '../../app/services/login.service';
 import * as LoginActions from '../../app/actions/login.action';
+import { Router } from '@angular/router';
 
 interface AppState {
 	login: LoginR
@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
 	login$: Observable<LoginR>;
 
 	constructor(
-		public navCtrl: NavController,
+		public router: Router,
 		private loginService: LoginService,
 		private store: Store<AppState>
 	) {
@@ -44,12 +44,12 @@ export class LoginPage implements OnInit {
 			this.login$.subscribe((data) => {
 				this.loginService.setLogin(data.data);
 			});
-			this.navCtrl.navigateRoot('/home');
+			this.router.navigateByUrl('/home');
 		}
 	}
 
 	signUp() {
-		this.navCtrl.navigateRoot('/signup');
+		this.router.navigateByUrl('/signup');
 	}
 
 }
