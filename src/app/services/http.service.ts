@@ -20,7 +20,7 @@ export class HttpService {
 	}
 
 	public get(url: string, token = null): Promise<Http> {
-		this.spinnerSrv.Show("Carregando os dados...");
+		//this.spinnerSrv.Show("Carregando os dados...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
 				let headers	= {};
@@ -45,7 +45,7 @@ export class HttpService {
 	}
 
 	public post(url: string, model: any): Promise<Http> {
-		this.spinnerSrv.Show("Salvando informações...");
+		//this.spinnerSrv.Show("Salvando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
 				this.http.post(url, model)
@@ -75,7 +75,7 @@ export class HttpService {
 	}
 
 	public put(url: string, model: any): Promise<Http> {
-		this.spinnerSrv.Show("Atualizando informações...");
+		//this.spinnerSrv.Show("Atualizando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
 				this.http.put(url, model)
@@ -108,7 +108,7 @@ export class HttpService {
 	}
 
 	public delete(url: string): Promise<Http> {
-		this.spinnerSrv.Show("Removendo registro...");
+		//this.spinnerSrv.Show("Removendo registro...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
 				this.http.delete(url).subscribe(_res => {

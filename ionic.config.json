@@ -1,13 +1,16 @@
 {
-  "name": "DaUmGrito_APP",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular",
-  "proxies": [
-    {
-      "path": "/v1/",
-      "proxyUrl": "http://localhost:3000/api/"
-    }
-  ]
+	"name": "DaUmGrito_APP",
+	"integrations": {
+		"cordova": {}
+	},
+	"type": "angular",
+	"proxies": [
+		{
+			"/api/*": {
+				"target": "http://localhost:3000",
+				"secure": false,
+				"logLevel": "debug"
+			}
+		}
+	]
 }

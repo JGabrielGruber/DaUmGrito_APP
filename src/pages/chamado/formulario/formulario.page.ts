@@ -1,6 +1,7 @@
 import { Chamado } from './../../../app/models/chamado.model';
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { CameraService } from './../../../app/services/camera.service';
 
 @Component({
 	selector: 'app-formulario',
@@ -11,7 +12,8 @@ export class FormularioPage implements OnInit {
 	chamado: Chamado = new Chamado();
 
 	constructor(
-		private geolocation: Geolocation
+		private geolocation: Geolocation,
+		private cameraService: CameraService
 	) { }
 
 	ngOnInit() {
@@ -24,7 +26,9 @@ export class FormularioPage implements OnInit {
 	}
 
 	async takePicture(): Promise<void> {
-		this.chamado.foto = "https://i1.sndcdn.com/artworks-000203162222-lfsd7a-t500x500.jpg";
+		this.cameraService.askForPicture((photo) => {
+			this.chamado.foto = photo;
+		});
 	}
 
 	async submit(): Promise<void> {
