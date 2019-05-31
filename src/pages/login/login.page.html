@@ -1,10 +1,10 @@
-<ion-content>
+<ion-content color="light">
 	<img src="../../assets/ico_DaUmGrito.png" alt="">
 	<ion-card>
 		<ion-card-content>
 			<form (ngSubmit)="logIn()" #loginForm="ngForm">
-				<ion-item>
-					<ion-icon name="contact" slot="start"></ion-icon>
+				<ion-item color="light">
+					<ion-icon name="contact" slot="start" color="dark"></ion-icon>
 					<ion-label position="floating" color="dark">CPF</ion-label>
 					<ion-input
 						name="client_id"
@@ -14,8 +14,8 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
-					<ion-icon name="lock" slot="start"></ion-icon>
+				<ion-item color="light">
+					<ion-icon name="lock" slot="start" color="dark"></ion-icon>
 					<ion-label position="floating" color="dark">Senha</ion-label>
 					<ion-input
 						name="client_secret"

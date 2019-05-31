@@ -6,13 +6,13 @@
 		<ion-title>Cadastrar</ion-title>
 	</ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content color="light">
 	<ion-card>
 		<ion-card-content>
 			<form (ngSubmit)="signUp()" #signupForm="ngForm">
 				<h4>informações Gerais</h4>
 				<ion-label color="dark">Foto de Perfil</ion-label>
-				<ion-item text-center>
+				<ion-item color="light" text-center>
 					<ion-avatar slot="start" *ngIf="cliente.foto">
 						<img [src]="cliente.foto" />
 					</ion-avatar>
@@ -21,7 +21,7 @@
 						Selecionar
 					</ion-button>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">CPF</ion-label>
 					<ion-input
 						name="cpf"
@@ -31,7 +31,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Nome</ion-label>
 					<ion-input
 						name="nome"
@@ -41,7 +41,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Senha</ion-label>
 					<ion-input
 						name="hash"
@@ -52,7 +52,7 @@
 					></ion-input>
 				</ion-item>
 				<h4>Informações de Contato</h4>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Telefone ou Celular</ion-label>
 					<ion-input
 						name="telefone_um"
@@ -62,7 +62,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Email</ion-label>
 					<ion-input
 						name="email_um"
@@ -73,7 +73,7 @@
 					></ion-input>
 				</ion-item>
 				<h4>Informações de Endereço</h4>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Estado</ion-label>
 					<ion-input
 						name="estado"
@@ -83,7 +83,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Cidade</ion-label>
 					<ion-input
 						name="cidade"
@@ -93,7 +93,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">CEP</ion-label>
 					<ion-input
 						name="cep"
@@ -103,7 +103,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Bairro</ion-label>
 					<ion-input
 						name="bairro"
@@ -113,7 +113,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Rua</ion-label>
 					<ion-input
 						name="rua"
@@ -123,7 +123,7 @@
 						color="primary"
 					></ion-input>
 				</ion-item>
-				<ion-item>
+				<ion-item color="light">
 					<ion-label position="floating" color="dark">Número</ion-label>
 					<ion-input
 						name="numero"

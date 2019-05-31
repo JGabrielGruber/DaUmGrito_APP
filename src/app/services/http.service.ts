@@ -69,7 +69,7 @@ export class HttpService {
 			}
 			else {
 				this.alertSrv.toast('Você está Offline, conecte-se a internet!', 'bottom');
-				resolve({ success: true, data: [], err: undefined });
+				resolve({ success: false, data: [], err: undefined });
 			}
 		});
 	}
