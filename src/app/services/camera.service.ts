@@ -18,10 +18,10 @@ export class CameraService {
 			quality: 70,
 			destinationType: this.camera.DestinationType.DATA_URL,
 			sourceType: source,
-			allowEdit: true,
+			allowEdit: false,
 			encodingType: this.camera.EncodingType.JPEG,
 			saveToPhotoAlbum: false,
-			correctOrientation: true
+			correctOrientation: false
 		}
 		this.camera.getPicture(options).then(
 			(imgData) => {
