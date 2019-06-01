@@ -1,5 +1,5 @@
 <ion-header>
-	<ion-toolbar>
+	<ion-toolbar color="light">
 		<ion-buttons slot="start">
 			<ion-back-button></ion-back-button>
 		</ion-buttons>
@@ -7,20 +7,20 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-	<ion-card>
+<ion-content color="light">
+	<ion-card color="light">
 		<form action="submit()" #chamadoForm="ngForm">
-			<ion-item>
+			<ion-item color="light">
 				<ion-label position="floating" color="dark">Título</ion-label>
 				<ion-input name="titulo" type="text" [(ngModel)]="chamado.titulo" color="primary" required></ion-input>
 			</ion-item>
-			<ion-item>
+			<ion-item color="light">
 				<ion-label position="floating" color="dark">Descrição</ion-label>
 				<ion-textarea name="descricao" type="text" [(ngModel)]="chamado.descricao" color="primary" required>
 				</ion-textarea>
 			</ion-item>
 			<br />
-			<ion-item text-center>
+			<ion-item text-center color="light">
 				<ion-button (click)="takePicture()">
 					<ion-icon slot="start" name="camera"></ion-icon>
 					Tirar Foto
@@ -31,7 +31,7 @@
 			</ion-item>
 			<br />
 			<ion-button expand="block" fill="solid" type="Submit" [disabled]="!chamadoForm.form.valid"
-				color="primary">Cadastrar Chamado</ion-button>
+				color="primary" (click)="submit()">Cadastrar Chamado</ion-button>
 		</form>
 	</ion-card>
 
