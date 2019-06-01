@@ -14,7 +14,7 @@ export class MainPage implements OnInit {
 	}
 
 	newChamado() {
-		this.router.navigateByUrl('/chamado/formulario');
+		this.router.navigateByUrl('/home/chamado/formulario');
 	}
 
 }

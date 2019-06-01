@@ -8,29 +8,33 @@ import { HomePage } from './home.page';
 
 const routes: Routes = [
 	{
-	  path: '',
-	  redirectTo: '/home/main',
-	  pathMatch: 'full'
+		path: '',
+		redirectTo: '/home/main',
+		pathMatch: 'full'
 	},
 	{
-	  path: '',
-	  component: HomePage,
-	  children: [
-		{
-		  path: 'main',
-		  loadChildren: '../main/main.module#MainPageModule'
-		}
-	  ]
-	}
-  ];
+		path: '',
+		component: HomePage,
+		children: [
+			{
+				path: 'main',
+				loadChildren: '../main/main.module#MainPageModule'
+			},
+			{
+				path: 'chamado',
+				loadChildren: '../chamado/chamado.module#ChamadoPageModule'
+			}
+		]
+	},
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [HomePage]
+	imports: [
+		CommonModule,
+		FormsModule,
+		IonicModule,
+		RouterModule.forChild(routes)
+	],
+	declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule { }

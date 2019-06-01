@@ -1,4 +1,4 @@
-<ion-menu side="start" menuId="first">
+<ion-menu side="start" menuId="sideMenu">
 	<ion-header>
 		<ion-toolbar color="light">
 			<ion-item lines="none">
@@ -11,11 +11,11 @@
 	</ion-header>
 	<ion-content>
 		<ion-list>
-			<ion-item button>
+			<ion-item button (click)="go('/home/main')">
 				<ion-icon name="map" slot="start"></ion-icon>
 				<ion-label>Mapa de Chamados</ion-label>
 			</ion-item>
-			<ion-item button>
+			<ion-item button (click)="go('/home/chamado')">
 				<ion-icon name="chatboxes" slot="start"></ion-icon>
 				<ion-label>Meus Chamados</ion-label>
 			</ion-item>

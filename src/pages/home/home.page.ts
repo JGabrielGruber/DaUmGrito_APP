@@ -3,6 +3,7 @@ import { UsuarioService } from '../../app/services/usuario.service';
 import { LoginService } from '../../app/services/login.service';
 import { Component } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage {
 	usuario: Cliente = new Cliente();
 
 	constructor(
-		public navCtrl: NavController,
+		public router: Router,
 		private menu: MenuController,
 		private login: LoginService,
 		private usuarioSV: UsuarioService
@@ -32,12 +33,16 @@ export class HomePage {
 				this.usuario	= response.data;
 			}
 		} else {
-			this.navCtrl.navigateRoot('/login');
+			this.router.navigateByUrl('/login');
 		}
+	}
+
+	go(url) {
+		this.router.navigateByUrl(url);
 	}
 
 	async logOff() {
 		await this.login.unsetLogin();
-		this.navCtrl.navigateRoot('/login');
+		this.router.navigateByUrl('/login');
 	}
 }
