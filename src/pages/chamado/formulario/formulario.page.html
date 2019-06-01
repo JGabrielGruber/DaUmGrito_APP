@@ -4,6 +4,14 @@
 			<ion-back-button></ion-back-button>
 		</ion-buttons>
 		<ion-title>Formulario</ion-title>
+		<ion-buttons slot="end">
+			<ion-button
+				type="Submit" [disabled]="!chamadoForm.form.valid"
+				(click)="submit()" strong>
+				<ion-icon slot="start" name="add"></ion-icon>
+				Cadastrar
+			</ion-button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
@@ -12,26 +20,25 @@
 		<form action="submit()" #chamadoForm="ngForm">
 			<ion-item color="light">
 				<ion-label position="floating" color="dark">Título</ion-label>
-				<ion-input name="titulo" type="text" [(ngModel)]="chamado.titulo" color="primary" required></ion-input>
+				<ion-input name="titulo" type="text" [(ngModel)]="chamado.titulo"
+				color="primary" minlength=10 maxlength=100 required></ion-input>
 			</ion-item>
 			<ion-item color="light">
 				<ion-label position="floating" color="dark">Descrição</ion-label>
-				<ion-textarea name="descricao" type="text" [(ngModel)]="chamado.descricao" color="primary" required>
+				<ion-textarea
+					name="descricao" type="text" [(ngModel)]="chamado.descricao"
+					color="primary" maxlength=2000 required auto-grow >
 				</ion-textarea>
 			</ion-item>
 			<br />
-			<ion-item text-center color="light">
-				<ion-button (click)="takePicture()">
-					<ion-icon slot="start" name="camera"></ion-icon>
-					Tirar Foto
+			<ion-item color="light" lines="none" style="text-align:center">
+				<ion-button
+					(click)="takePicture()" size="large" shape="round"
+					*ngIf="!chamado.foto" style="margin: 10px auto">
+					<ion-icon slot="icon-only" size="large" name="camera"></ion-icon>
 				</ion-button>
-				<ion-item *ngIf="chamado.foto">
-					<img [src]="chamado.foto">
-				</ion-item>
+				<img *ngIf="chamado.foto" [src]="chamado.foto" style="margin: 0 auto">
 			</ion-item>
-			<br />
-			<ion-button expand="block" fill="solid" type="Submit" [disabled]="!chamadoForm.form.valid"
-				color="primary" (click)="submit()">Cadastrar Chamado</ion-button>
 		</form>
 	</ion-card>
 

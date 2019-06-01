@@ -18,6 +18,7 @@ export class AlertService {
 
 	async alert(title: string, message: string): Promise<void> {
 		(await this.alertCtrl.create({
+			header: title,
 			message: message,
 			buttons: ['Ok']
 		})).present();

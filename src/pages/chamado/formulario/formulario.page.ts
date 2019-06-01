@@ -1,8 +1,9 @@
+import { AlertService } from './../../../app/services/alert.service';
 import { LoginService } from './../../../app/services/login.service';
 import { ChamadoService } from './../../../app/services/chamado.service';
 import { Chamado } from './../../../app/models/chamado.model';
 import { Component, OnInit } from '@angular/core';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { CameraService } from './../../../app/services/camera.service';
 import { Platform } from '@ionic/angular';
 import { Location } from '@angular/common';
@@ -21,17 +22,18 @@ export class FormularioPage implements OnInit{
 		private platform: Platform,
 		private chamadoService: ChamadoService,
 		private loginService: LoginService,
-		private location: Location
+		private location: Location,
+		private alertService: AlertService
 	) {}
 
 	ngOnInit() {
 		this.getLocation();
 	}
 
-	async getLocation() {
+	async getLocation(time: number=30000) {
 		await this.platform.ready();
 		await this.geolocation.getCurrentPosition({
-			timeout: 30000,
+			timeout: time,
 			enableHighAccuracy: true
 		}).then((resp) => {
 			this.chamado.localizacao	= {
@@ -39,7 +41,9 @@ export class FormularioPage implements OnInit{
 				longitude: resp.coords.longitude
 			};
 		}).catch((error) => {
-			alert("Problema ao obter sua localização");
+			this.alertService.alert(
+				"Erro de Localização",
+				"Não conseguimos obter sua localização, ela está ativada no seu dispositivo?");
 			console.log(error);
 		});
 	}
@@ -51,10 +55,11 @@ export class FormularioPage implements OnInit{
 	}
 
 	async submit(): Promise<void> {
-		await this.getLocation();
-		console.log(this.chamado);
-		if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()))).success) {
-			this.location.back();
+		await this.getLocation(1000);
+		if (this.chamado.localizacao) {
+			if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()))).success) {
+				this.location.back();
+			}
 		}
 	}
 
