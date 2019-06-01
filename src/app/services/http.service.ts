@@ -44,11 +44,15 @@ export class HttpService {
 		});
 	}
 
-	public post(url: string, model: any): Promise<Http> {
+	public post(url: string, model: any, token = null): Promise<Http> {
 		//this.spinnerSrv.Show("Salvando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
-				this.http.post(url, model)
+				let headers	= {};
+				if (token) {
+					headers['Authorization'] = token;
+				}
+				this.http.post(url, model, { headers })
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });

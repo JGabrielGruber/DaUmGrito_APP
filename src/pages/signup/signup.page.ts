@@ -1,11 +1,12 @@
+import { CameraService } from './../../app/services/camera.service';
 import { ClienteService } from './../../app/services/cliente.service';
 import { Cliente } from './../../app/models/cliente.model';
 import { ClienteReducer } from './../../app/models/clienteR.model';
-import { NavController } from '@ionic/angular';
 import { Component } from '@angular/core';
 import * as ClienteActions from '../../app/actions/cliente.action';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 
 interface AppState {
@@ -21,9 +22,10 @@ export class SignupPage {
 	cliente$: Observable<ClienteReducer>;
 
 	constructor(
-		public navCtrl: NavController,
+		public router: Router,
 		private clienteService: ClienteService,
-		private store: Store<AppState>
+		private store: Store<AppState>,
+		private cameraService: CameraService
 	) {
 		this.cliente$ = this.store.select('cliente');
 	}
@@ -31,16 +33,18 @@ export class SignupPage {
 	async signUp(): Promise<void> {
 		let result	= await ClienteActions.postCliente(this.clienteService, this.store, this.cliente);
 		if (result && result.success) {
-			this.navCtrl.navigateRoot('/login');
+			this.router.navigateByUrl('/login');
 		}
 	}
 
 	async takePicture(): Promise<void> {
-		this.cliente.foto = "https://cs.uwaterloo.ca/twiki/pub/Main/UserProfileHeader/default-user-profile.jpg";
+		this.cameraService.askForPicture((photo) => {
+			this.cliente.foto = photo;
+		});
 	}
 
 	cancel() {
-		this.navCtrl.navigateRoot('/login');
+		this.router.navigateByUrl('/login');
 	}
 
 }

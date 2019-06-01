@@ -1,5 +1,5 @@
 import { LoginR } from './../../app/models/loginR.model';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -17,7 +17,7 @@ interface AppState {
 	templateUrl: './login.page.html',
 	styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 	credentials = { client_id: null, client_secret: null };
 	login$: Observable<LoginR>;
 
@@ -27,9 +27,16 @@ export class LoginPage implements OnInit {
 		private store: Store<AppState>
 	) {
 		this.login$ = this.store.select('login');
+		this.check();
 	}
 
-	ngOnInit() {}
+	async check() {
+		console.log((await this.loginService.getToken()));
+		
+		if (!(await this.loginService.getToken())) {
+			this.router.navigateByUrl('/home/main');
+		}
+	}
 
 	async logIn(): Promise<void> {
 		let login:Login = {

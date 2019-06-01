@@ -17,8 +17,8 @@ export abstract class Service<T> {
 		return this.http.get(`${this.url}/${id}`);
 	}
 
-	post(model : T) : Promise<Http> {
-		return this.http.post(this.url, model);
+	post(model : T, token : any = null) : Promise<Http> {
+		return this.http.post(this.url, model, token);
 	}
 
 	put(id : string, model : T) : Promise<Http> {
