@@ -1,10 +1,13 @@
+import { UsuarioService } from './../services/usuario.service';
 import { ClienteReducer } from './../models/clienteR.model';
 import { Cliente } from './../models/cliente.model';
 import { ClienteService } from './../services/cliente.service';
 import { Action } from '@ngrx/store';
+import { LoginService } from '../services/login.service';
 
 export const REQUEST_CLIENTE		= '[Cliente] Request cliente';
 export const RECEIVE_CLIENTE		= '[Cliente] Receive cliente';
+export const SET_CLIENTE			= '[Cliente] Set cliente';
 export const UNSET_CLIENTE			= '[Cliente] Unset cliente';
 
 export class RequestCliente implements Action {
@@ -16,18 +19,39 @@ export class ReceiveCliente implements Action {
 	constructor(public payload: ClienteReducer) {}
 }
 
+export class SetCliente implements Action {
+	readonly type = SET_CLIENTE;
+	constructor(public payload: Cliente) {}
+}
+
 export class UnsetCliente implements Action {
 	readonly type = UNSET_CLIENTE;
 }
 
-export async function fetchClientesIfNeeded(clienteService: ClienteService, store: any) {
+export async function fetchUsuario(loginService: LoginService, usuarioService: UsuarioService, store: any) {
 	let isFetching: boolean;
 	await store.select('cliente').subscribe((data)=> {
 		isFetching = data.isFetching;
 	});
 	if (!isFetching) {
+		let localUser	= usuarioService.getUsuario();
+		if (localUser) {
+			store.dispatch(new SetCliente(localUser))
+		}
 		store.dispatch(new RequestCliente());
-		return await clienteService.get();
+		let token	= await loginService.getToken();
+		if (token) {
+			let response	= await usuarioService.getData(token);
+			if (response.success) {
+				usuarioService.setUsuario(response.data);
+				console.log(response.data);
+				
+				store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: false, data: response.data }));
+				return response.data;
+			}
+		}
+		store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: true, data: new Cliente() }));
+		return;
 	}
 }
 
@@ -72,4 +96,5 @@ export async function deleteCliente(clienteService: ClienteService, store: any, 
 export type All
 	= RequestCliente
 	| ReceiveCliente
+	| SetCliente
 	| UnsetCliente
