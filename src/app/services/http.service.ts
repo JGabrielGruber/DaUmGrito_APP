@@ -44,7 +44,7 @@ export class HttpService {
 		});
 	}
 
-	public post(url: string, model: any, token = null): Promise<Http> {
+	public post(url: string, model: any, token = null, message = 'Adicionado com sucesso!'): Promise<Http> {
 		//this.spinnerSrv.Show("Salvando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
@@ -56,7 +56,7 @@ export class HttpService {
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });
-						this.alertSrv.toast('Adicionado com sucesso!', 'bottom');
+						this.alertSrv.toast(message, 'bottom');
 					}, err => {
 						this.spinnerSrv.Hide();
 						console.log(err);
