@@ -1,6 +1,6 @@
 import { UsuarioService } from './../../app/services/usuario.service';
 import { ClienteReducer } from './../../app/models/clienteR.model';
-import { LoginR } from './../../app/models/loginR.model';
+import { LoginReducer } from './../../app/models/loginR.model';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import * as LoginActions from '../../app/actions/login.action';
 import * as ClienteActions from '../../app/actions/cliente.action';
 
 interface AppState {
-	login: LoginR,
+	login: LoginReducer,
 	usuario: ClienteReducer
 }
 
@@ -23,7 +23,7 @@ interface AppState {
 })
 export class LoginPage {
 	credentials = { client_id: null, client_secret: null };
-	login$: Observable<LoginR>;
+	login$: Observable<LoginReducer>;
 	usuario$: Observable<ClienteReducer>;
 
 	constructor(

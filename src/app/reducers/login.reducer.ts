@@ -1,9 +1,9 @@
-import { LoginR } from './../models/loginR.model';
+import { LoginReducer } from './../models/loginR.model';
 import * as LoginActions from '../actions/login.action';
 
 export type Action = LoginActions.All;
 
-const defaultState: LoginR = {
+const defaultState: LoginReducer = {
 	isFetching		: false,
 	didInvalidate	: false,
 	data			: {
@@ -19,7 +19,7 @@ const newState = (state, newData) => {
 	return Object.assign({}, state, newData);
 }
 
-export function loginReducers(state: LoginR = defaultState, action: Action) {
+export function loginReducers(state: LoginReducer = defaultState, action: Action) {
 
 	switch (action.type) {
 		case LoginActions.REQUEST_LOGIN:
