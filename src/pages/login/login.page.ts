@@ -1,15 +1,19 @@
+import { UsuarioService } from './../../app/services/usuario.service';
+import { ClienteReducer } from './../../app/models/clienteR.model';
 import { LoginR } from './../../app/models/loginR.model';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 import { Login } from './../../app/models/login.model';
 import { LoginService } from '../../app/services/login.service';
 import * as LoginActions from '../../app/actions/login.action';
-import { Router } from '@angular/router';
+import * as ClienteActions from '../../app/actions/cliente.action';
 
 interface AppState {
-	login: LoginR
+	login: LoginR,
+	usuario: ClienteReducer
 }
 
 @Component({
@@ -20,20 +24,21 @@ interface AppState {
 export class LoginPage {
 	credentials = { client_id: null, client_secret: null };
 	login$: Observable<LoginR>;
+	usuario$: Observable<ClienteReducer>;
 
 	constructor(
 		public router: Router,
 		private loginService: LoginService,
+		private usuarioService: UsuarioService,
 		private store: Store<AppState>
 	) {
 		this.login$ = this.store.select('login');
+		this.usuario$ = this.store.select('cliente');
 		this.check();
 	}
 
 	async check() {
-		console.log((await this.loginService.getToken()));
-		
-		if (!(await this.loginService.getToken())) {
+		if ((await this.loginService.getToken())) {
 			this.router.navigateByUrl('/home/main');
 		}
 	}
@@ -51,7 +56,8 @@ export class LoginPage {
 			this.login$.subscribe((data) => {
 				this.loginService.setLogin(data.data);
 			});
-			this.router.navigateByUrl('/home');
+			await ClienteActions.fetchUsuario(this.loginService, this.usuarioService, this.store);
+			this.router.navigateByUrl('/home', { replaceUrl: true });
 		}
 	}
 
