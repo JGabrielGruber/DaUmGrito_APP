@@ -1,3 +1,4 @@
+import { AlertService } from './alert.service';
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController, Platform } from '@ionic/angular';
@@ -10,6 +11,7 @@ export class CameraService {
 	constructor(
 		private camera: Camera,
 		private actionSC: ActionSheetController,
+		private alertService: AlertService,
 		private platform: Platform
 	) {}
 
@@ -21,7 +23,9 @@ export class CameraService {
 			allowEdit: false,
 			encodingType: this.camera.EncodingType.JPEG,
 			saveToPhotoAlbum: false,
-			correctOrientation: false
+			correctOrientation: true,
+			targetWidth: 400,
+			targetHeight: 400,
 		}
 		this.camera.getPicture(options).then(
 			(imgData) => {
@@ -29,7 +33,7 @@ export class CameraService {
 				callback(base64Image);
 			},
 			err => {
-				alert('Problema ao capturar a foto!')
+				this.alertService.alert("Nenhuma foto obtida", "");
 				console.log('Problema ao capturar a foto', err);
 			});
 	}
