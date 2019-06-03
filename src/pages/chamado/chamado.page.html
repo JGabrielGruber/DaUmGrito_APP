@@ -8,5 +8,9 @@
 </ion-header>
 
 <ion-content>
-
+	<ion-list lines>
+		<ion-item *ngFor="let item of lista" text-wrap (click)="detalhes(item)">
+			{{ item.titulo }}
+		</ion-item>
+	</ion-list>
 </ion-content>
