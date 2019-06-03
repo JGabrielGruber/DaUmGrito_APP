@@ -27,8 +27,8 @@ export class LoginService extends Service<Login>{
 	}
 
 	unsetLogin() {
-		sessionStorage.setItem(Configs.storageKeys.access_token, "");
-		sessionStorage.setItem(Configs.storageKeys.token_type, "");
+		localStorage.setItem(Configs.storageKeys.access_token, "");
+		localStorage.setItem(Configs.storageKeys.token_type, "");
 	}
 
 	async getToken() {
