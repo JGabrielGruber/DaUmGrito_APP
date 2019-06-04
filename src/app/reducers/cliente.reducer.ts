@@ -40,6 +40,8 @@ export function clienteReducers(state: ClienteReducer = defaultState, action: Ac
 			return newState(state, { isFetching: true, didInvalidate: false });
 		case ClienteActions.RECEIVE_CLIENTE:
 			return newState(state, action.payload);
+		case ClienteActions.RECEIVE_FETCH:
+			return newState(state, { isFetching: false, didInvalidate: true });
 		case ClienteActions.SET_CLIENTE:
 			return newState(state, { data: action.payload });
 		case ClienteActions.UNSET_CLIENTE:

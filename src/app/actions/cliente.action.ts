@@ -7,6 +7,7 @@ import { LoginService } from '../services/login.service';
 
 export const REQUEST_CLIENTE		= '[Cliente] Request cliente';
 export const RECEIVE_CLIENTE		= '[Cliente] Receive cliente';
+export const RECEIVE_FETCH			= '[Cliente] Receive Fetch cliente';
 export const SET_CLIENTE			= '[Cliente] Set cliente';
 export const UNSET_CLIENTE			= '[Cliente] Unset cliente';
 
@@ -17,6 +18,10 @@ export class RequestCliente implements Action {
 export class ReceiveCliente implements Action {
 	readonly type = RECEIVE_CLIENTE;
 	constructor(public payload: ClienteReducer) {}
+}
+
+export class ReceiveFetch implements Action {
+	readonly type = RECEIVE_FETCH;
 }
 
 export class SetCliente implements Action {
@@ -34,7 +39,7 @@ export async function fetchUsuario(loginService: LoginService, usuarioService: U
 		isFetching = data.isFetching;
 	});
 	if (!isFetching) {
-		let localUser	= usuarioService.getUsuario();
+		let localUser	= await usuarioService.getUsuario();
 		if (localUser) {
 			store.dispatch(new SetCliente(localUser))
 		}
@@ -44,11 +49,11 @@ export async function fetchUsuario(loginService: LoginService, usuarioService: U
 			let response	= await usuarioService.getData(token);
 			if (response.success) {
 				usuarioService.setUsuario(response.data);
-				store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: false, data: response.data }));
+				store.dispatch(new ReceiveFetch);
 				return response.data;
 			}
 		}
-		store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: true, data: new Cliente() }));
+		store.dispatch(new ReceiveFetch);
 		return;
 	}
 }
@@ -94,5 +99,6 @@ export async function deleteCliente(clienteService: ClienteService, store: any, 
 export type All
 	= RequestCliente
 	| ReceiveCliente
+	| ReceiveFetch
 	| SetCliente
 	| UnsetCliente

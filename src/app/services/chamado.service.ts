@@ -21,4 +21,16 @@ export class ChamadoService extends Service<Chamado> {
 	async getByCliente(cliente: Cliente, token): Promise<Http> {
 		return this.http.get(`${ this.url }/cliente/${ cliente.cpf }`, token);
 	}
+
+	setChamados(chamado: Chamado) {
+		sessionStorage.setItem(Configs.storageKeys.chamados, JSON.stringify(chamado));
+	}
+
+	unsetChamados() {
+		sessionStorage.setItem(Configs.storageKeys.chamados, "");
+	}
+
+	getChamados(): Array<Chamado> {
+		return JSON.parse(sessionStorage.getItem(Configs.storageKeys.chamados));
+	}
 }
