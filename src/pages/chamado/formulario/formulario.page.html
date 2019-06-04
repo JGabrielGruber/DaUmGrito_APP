@@ -7,9 +7,15 @@
 		<ion-buttons slot="end">
 			<ion-button
 				type="Submit" [disabled]="!chamadoForm.form.valid"
-				(click)="submit()" strong>
+				(click)="submit()" strong *ngIf="!isEditing">
 				<ion-icon slot="start" name="add"></ion-icon>
 				Cadastrar
+			</ion-button>
+			<ion-button
+				type="Submit" [disabled]="!chamadoForm.form.valid"
+				(click)="submit()" strong *ngIf="isEditing">
+				<ion-icon slot="start" name="create"></ion-icon>
+				Editar
 			</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
@@ -39,6 +45,11 @@
 				</ion-button>
 				<img *ngIf="chamado.foto" [src]="chamado.foto" style="margin: 0 auto">
 			</ion-item>
+			<ion-button expand="block" fill="clear" (click)="remove()"
+				*ngIf="isEditing" color="danger" class="bottom">
+				<ion-icon slot="start" name="trash"></ion-icon>
+				REMOVER CHAMADO
+			</ion-button>
 		</form>
 	</ion-card>
 

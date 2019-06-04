@@ -34,10 +34,13 @@ export class DetalhePage implements OnInit {
 		if (token && token != "") {
 			let response = await this.chamadoService.getById(id, token);
 			if (response.success) {
-				console.log(response.data);
 				this.chamado = response.data;
 			}
 		}
+	}
+
+	edit() {
+		this.router.navigate(['/home/chamado/formulario'], { state: { chamado: this.chamado } });
 	}
 
 }

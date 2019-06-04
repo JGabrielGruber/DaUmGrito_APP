@@ -4,6 +4,12 @@
 			<ion-back-button></ion-back-button>
 		</ion-buttons>
 		<ion-title>Detalhes</ion-title>
+		<ion-buttons slot="end">
+			<ion-button (click)="edit()" strong>
+				<ion-icon slot="start" name="create"></ion-icon>
+				Editar
+			</ion-button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <ion-content>
@@ -14,6 +20,8 @@
 	</p>
 	<br />
 	<p class="data">
+		Estado do chamado: {{ chamado.status }}
+		<br />
 		Criado: {{ chamado.timestamp }}
 		<br />
 		Última atualização: {{ chamado.timeupdate }}
