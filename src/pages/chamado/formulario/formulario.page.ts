@@ -15,8 +15,9 @@ import { Location } from '@angular/common';
 	styleUrls: ['./formulario.page.scss'],
 })
 export class FormularioPage implements OnInit{
-	chamado: Chamado = new Chamado();
-	isEditing: boolean = false;
+	chamado:	Chamado	= new Chamado();
+	isEditing:	boolean	= false;
+	isFetching:	boolean	= false;
 
 	constructor(
 		private geolocation: Geolocation,
@@ -62,16 +63,22 @@ export class FormularioPage implements OnInit{
 	}
 
 	async submit(): Promise<void> {
-		if (!this.isEditing) {
-			await this.getLocation(1000);
-			if (this.chamado.localizacao) {
-				if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()))).success) {
+		if (!this.isFetching) {
+			if (!this.isEditing) {
+				await this.getLocation(1000);
+				if (this.chamado.localizacao) {
+					this.isFetching = true;
+					if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()))).success) {
+						this.location.back();
+					}
+					this.isFetching = false;
+				}
+			} else {
+				this.isFetching = true;
+				if ((await this.chamadoService.put( this.chamado._id, this.chamado, (await this.loginService.getToken()))).success) {
 					this.location.back();
 				}
-			}
-		} else {
-			if ((await this.chamadoService.put( this.chamado._id, this.chamado, (await this.loginService.getToken()))).success) {
-				this.location.back();
+				this.isFetching = false;
 			}
 		}
 	}
@@ -84,11 +91,15 @@ export class FormularioPage implements OnInit{
 	}
 
 	async remove(): Promise<void> {
-		this.alertService.confirm("ATENÇÃO!", "Você realmente deseja remover este chamado?", async () => {
-			if ((await this.chamadoService.delete(this.chamado._id, (await this.loginService.getToken()))).success) {
-				this.router.navigateByUrl('/home/chamado');
-			}
-		});
+		if (!this.isFetching) {
+			this.alertService.confirm("ATENÇÃO!", "Você realmente deseja remover este chamado?", async () => {
+				this.isFetching = true;
+				if ((await this.chamadoService.delete(this.chamado._id, (await this.loginService.getToken()))).success) {
+					this.router.navigateByUrl('/home/chamado');
+				}
+				this.isFetching = false;
+			});
+		}
 	}
 
 }

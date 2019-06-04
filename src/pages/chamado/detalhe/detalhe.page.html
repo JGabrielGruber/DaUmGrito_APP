@@ -19,7 +19,7 @@
 		{{ chamado.descricao }}
 	</p>
 	<br />
-	<p class="data">
+	<p class="data" *ngIf="chamado.status">
 		Estado do chamado: {{ chamado.status }}
 		<br />
 		Criado: {{ chamado.timestamp }}
