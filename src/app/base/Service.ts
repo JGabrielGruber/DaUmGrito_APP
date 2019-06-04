@@ -25,11 +25,11 @@ export abstract class Service<T> {
 		return this.http.post(this.url, model, token);
 	}
 
-	put(id: string, model: T): Promise<Http> {
-		return this.http.put(`${this.url}/${id}`, model);
+	put(id: string, model: T, token: any = null): Promise<Http> {
+		return this.http.put(`${this.url}/${id}`, model, token);
 	}
 
-	delete(id: string): Promise<Http> {
-		return this.http.delete(`${this.url}/${id}`);
+	delete(id: string, token: any = null): Promise<Http> {
+		return this.http.delete(`${this.url}/${id}`, token);
 	}
 }

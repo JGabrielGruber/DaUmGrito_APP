@@ -78,11 +78,15 @@ export class HttpService {
 		});
 	}
 
-	public put(url: string, model: any): Promise<Http> {
+	public put(url: string, model: any, token = null,): Promise<Http> {
 		//this.spinnerSrv.Show("Atualizando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
-				this.http.put(url, model)
+				let headers	= {};
+				if (token) {
+					headers['Authorization'] = token;
+				}
+				this.http.put(url, model, { headers })
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });
@@ -111,11 +115,15 @@ export class HttpService {
 		});
 	}
 
-	public delete(url: string): Promise<Http> {
+	public delete(url: string, token: any = null): Promise<Http> {
 		//this.spinnerSrv.Show("Removendo registro...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
-				this.http.delete(url).subscribe(_res => {
+				let headers	= {};
+				if (token) {
+					headers['Authorization'] = token;
+				}
+				this.http.delete(url, { headers }).subscribe(_res => {
 					this.spinnerSrv.Hide();
 					resolve({ success: true, data: _res, err: undefined });
 				}, err => {
