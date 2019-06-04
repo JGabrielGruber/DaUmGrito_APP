@@ -1,3 +1,4 @@
+import { ChamadoLight } from './../../app/models/chamadoL.model';
 import { LoginService } from './../../app/services/login.service';
 import { ClienteReducer } from './../../app/models/clienteR.model';
 import { ChamadoService } from './../../app/services/chamado.service';
@@ -17,7 +18,7 @@ interface AppState {
 	styleUrls: ['./chamado.page.scss'],
 })
 export class ChamadoPage implements OnInit {
-	lista: Array<Chamado>	= new Array<Chamado>();
+	lista: Array<ChamadoLight>	= new Array<ChamadoLight>();
 	usuario$: Observable<ClienteReducer>;
 
 	constructor(
