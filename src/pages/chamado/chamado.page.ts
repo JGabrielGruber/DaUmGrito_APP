@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chamado } from 'src/app/models/chamado.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 interface AppState {
 	usuario: ClienteReducer
@@ -22,7 +23,8 @@ export class ChamadoPage implements OnInit {
 	constructor(
 		private chamadoService: ChamadoService,
 		private loginService: LoginService,
-		private store: Store<AppState>
+		private store: Store<AppState>,
+		private router: Router
 	) {
 		this.usuario$	= this.store.select('cliente');
 		this.listar();
@@ -40,8 +42,11 @@ export class ChamadoPage implements OnInit {
 					this.lista	= response.data;
 				}
 			}
-		})
-		
+		});
+	}
+
+	detalhes(item: Chamado) {
+		this.router.navigate(['/home/chamado/detalhe'], { queryParams: { id: item._id } });
 	}
 
 }

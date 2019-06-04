@@ -1,0 +1,21 @@
+<ion-header>
+	<ion-toolbar color="light">
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Detalhes</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<img *ngIf="chamado.foto" [src]="chamado.foto">
+	<ion-title>{{ chamado.titulo }}</ion-title>
+	<p class="descricao">
+		{{ chamado.descricao }}
+	</p>
+	<br />
+	<p class="data">
+		Criado: {{ chamado.timestamp }}
+		<br />
+		Última atualização: {{ chamado.timeupdate }}
+	</p>
+</ion-content>

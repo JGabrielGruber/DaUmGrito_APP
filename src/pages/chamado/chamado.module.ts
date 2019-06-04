@@ -15,6 +15,10 @@ const routes: Routes = [
 	{
 		path: 'formulario',
 		loadChildren: './formulario/formulario.module#FormularioPageModule'
+	},
+	{
+		path: 'detalhe',
+		loadChildren: './detalhe/detalhe.module#DetalhePageModule'
 	}
 ];
 
