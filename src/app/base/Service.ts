@@ -10,26 +10,26 @@ export abstract class Service<T> {
 		
 	}
 
-	get() : Promise<Http> {
+	get(): Promise<Http> {
 		return this.http.get(this.url);
 	}
 
-	getById(id : string) : Promise<Http> {
-		return this.http.get(`${this.url}/${id}`);
+	getById(id: string, token: any = null): Promise<Http> {
+		return this.http.get(`${this.url}/${id}`, token);
 	}
 
-	post(model : T, token : any = null) : Promise<Http> {
+	post(model: T, token: any = null): Promise<Http> {
 		if (this.msg) {
 			return this.http.post(this.url, model, token, this.msg);
 		}
 		return this.http.post(this.url, model, token);
 	}
 
-	put(id : string, model : T) : Promise<Http> {
+	put(id: string, model: T): Promise<Http> {
 		return this.http.put(`${this.url}/${id}`, model);
 	}
 
-	delete(id : string) : Promise<Http> {
+	delete(id: string): Promise<Http> {
 		return this.http.delete(`${this.url}/${id}`);
 	}
 }
