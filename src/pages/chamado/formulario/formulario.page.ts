@@ -1,13 +1,21 @@
+import { ChamadoReducer } from './../../../app/models/chamadoR.model';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Platform } from '@ionic/angular';
+import { Location } from '@angular/common';
+
 import { AlertService } from './../../../app/services/alert.service';
 import { LoginService } from './../../../app/services/login.service';
 import { ChamadoService } from './../../../app/services/chamado.service';
 import { Chamado } from './../../../app/models/chamado.model';
-import { Component, OnInit } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { CameraService } from './../../../app/services/camera.service';
-import { Platform } from '@ionic/angular';
-import { Location } from '@angular/common';
+import * as ChamadoActions from './../../../app/actions/chamado.action';
+import { Store } from '@ngrx/store';
+
+interface AppState {
+	chamados: ChamadoReducer
+}
 
 @Component({
 	selector: 'app-formulario',
@@ -27,7 +35,8 @@ export class FormularioPage implements OnInit{
 		private loginService: LoginService,
 		private location: Location,
 		private alertService: AlertService,
-		private router: Router
+		private router: Router,
+		private store: Store<AppState>
 	) {
 		this.checkIfEdit();
 	}
@@ -69,6 +78,7 @@ export class FormularioPage implements OnInit{
 				if (this.chamado.localizacao) {
 					this.isFetching = true;
 					if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()))).success) {
+						ChamadoActions.fetchChamados(this.chamadoService, this.loginService, this.store);
 						this.location.back();
 					}
 					this.isFetching = false;
@@ -76,6 +86,7 @@ export class FormularioPage implements OnInit{
 			} else {
 				this.isFetching = true;
 				if ((await this.chamadoService.put( this.chamado._id, this.chamado, (await this.loginService.getToken()))).success) {
+					ChamadoActions.fetchChamados(this.chamadoService, this.loginService, this.store);
 					this.location.back();
 				}
 				this.isFetching = false;

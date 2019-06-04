@@ -1,15 +1,19 @@
-import { ChamadoLight } from './../../app/models/chamadoL.model';
-import { LoginService } from './../../app/services/login.service';
-import { ClienteReducer } from './../../app/models/clienteR.model';
-import { ChamadoService } from './../../app/services/chamado.service';
+import { ChamadoReducer } from './../../app/models/chamadoR.model';
 import { Component, OnInit } from '@angular/core';
 import { Chamado } from 'src/app/models/chamado.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 
+import { ChamadoLight } from './../../app/models/chamadoL.model';
+import { LoginService } from './../../app/services/login.service';
+import { ClienteReducer } from './../../app/models/clienteR.model';
+import { ChamadoService } from './../../app/services/chamado.service';
+import * as ClienteActions from './../../app/actions/chamado.action';
+
 interface AppState {
-	usuario: ClienteReducer
+	usuario: ClienteReducer,
+	chamados: ChamadoReducer
 }
 
 @Component({
@@ -18,8 +22,8 @@ interface AppState {
 	styleUrls: ['./chamado.page.scss'],
 })
 export class ChamadoPage implements OnInit {
-	lista: Array<ChamadoLight>	= new Array<ChamadoLight>();
 	usuario$: Observable<ClienteReducer>;
+	chamados$: Observable<ChamadoReducer>;
 
 	constructor(
 		private chamadoService: ChamadoService,
@@ -28,6 +32,7 @@ export class ChamadoPage implements OnInit {
 		private router: Router
 	) {
 		this.usuario$	= this.store.select('cliente');
+		this.chamados$	= this.store.select('chamados');
 		this.listar();
 	}
 
@@ -35,15 +40,7 @@ export class ChamadoPage implements OnInit {
 	}
 
 	async listar(): Promise<void> {
-		let token	= await this.loginService.getToken();
-		this.usuario$.subscribe(async (data) => {
-			if (data.data.cpf) {
-				let response	= await this.chamadoService.getByCliente(data.data, token);
-				if (response && response.success) {
-					this.lista	= response.data;
-				}
-			}
-		});
+		await ClienteActions.fetchChamados(this.chamadoService, this.loginService, this.store);
 	}
 
 	detalhes(item: Chamado) {

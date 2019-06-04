@@ -3,6 +3,7 @@ export class Configs {
 	public static storageKeys		= {
 		access_token	: 'daumgrito.access_token',
 		token_type		: 'daumgrito.token_type',
-		usuario			: 'daumgrito.usuario'
+		usuario			: 'daumgrito.usuario',
+		chamados		: 'daumgrito.chamados'
 	}
 }
