@@ -30,7 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
 		StoreModule.forRoot({
 			'login': loginReducers,
 			'cliente': clienteReducers,
-			'chamado': chamadoRedcuers
+			'chamados': chamadoRedcuers
 		}),
 		StoreDevtoolsModule.instrument({
 			maxAge: 10
