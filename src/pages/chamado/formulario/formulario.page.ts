@@ -45,7 +45,7 @@ export class FormularioPage implements OnInit{
 		this.getLocation();
 	}
 
-	async getLocation(time: number=30000) {
+	async getLocation(time: number=100000) {
 		if (!this.isEditing) {
 			await this.platform.ready();
 			await this.geolocation.getCurrentPosition({

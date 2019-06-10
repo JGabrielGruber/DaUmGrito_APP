@@ -51,7 +51,11 @@ export async function fetchChamados(chamadoService: ChamadoService, loginService
 					let response	= await chamadoService.getByCliente(data.data, token);
 					if (response.success) {
 						chamadoService.setChamados(response.data);
-						store.dispatch(new ReceiveFetch);
+						store.dispatch(new ReceiveChamado({
+							isFetching: false,
+							didInvalidate: false,
+							data: response.data
+						}));
 						return response.data;
 					}
 					store.dispatch(new ReceiveFetch);

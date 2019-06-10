@@ -23,14 +23,14 @@ export class ChamadoService extends Service<Chamado> {
 	}
 
 	setChamados(chamado: Chamado) {
-		sessionStorage.setItem(Configs.storageKeys.chamados, JSON.stringify(chamado));
+		localStorage.setItem(Configs.storageKeys.chamados, JSON.stringify(chamado));
 	}
 
 	unsetChamados() {
-		sessionStorage.setItem(Configs.storageKeys.chamados, "");
+		localStorage.setItem(Configs.storageKeys.chamados, "");
 	}
 
 	getChamados(): Array<Chamado> {
-		return JSON.parse(sessionStorage.getItem(Configs.storageKeys.chamados));
+		return JSON.parse(localStorage.getItem(Configs.storageKeys.chamados));
 	}
 }

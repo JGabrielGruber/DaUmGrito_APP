@@ -12,11 +12,19 @@
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content *ngIf="chamado._id">
 	<img *ngIf="chamado.foto" [src]="chamado.foto">
+	<br />
+	<br />
 	<ion-title>{{ chamado.titulo }}</ion-title>
 	<p class="descricao">
 		{{ chamado.descricao }}
+	</p>
+	<br />
+	<br />
+	<ion-title>Atendente</ion-title>
+	<p class="descricao">
+		{{ chamado.responsavel.nome }}
 	</p>
 	<br />
 	<p class="data" *ngIf="chamado.status">

@@ -33,14 +33,14 @@ export class ChamadoPage implements OnInit {
 	) {
 		this.usuario$	= this.store.select('cliente');
 		this.chamados$	= this.store.select('chamados');
-		this.listar();
 	}
 
 	ngOnInit() {
+		this.listar();
 	}
 
 	async listar(): Promise<void> {
-		await ClienteActions.fetchChamados(this.chamadoService, this.loginService, this.store);
+		ClienteActions.fetchChamados(this.chamadoService, this.loginService, this.store);
 	}
 
 	detalhes(item: Chamado) {

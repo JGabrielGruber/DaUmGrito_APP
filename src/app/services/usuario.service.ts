@@ -22,15 +22,15 @@ export class UsuarioService extends Service<Cliente>{
 	}
 
 	setUsuario(usuario: Cliente) {
-		sessionStorage.setItem(Configs.storageKeys.usuario, JSON.stringify(usuario));
+		localStorage.setItem(Configs.storageKeys.usuario, JSON.stringify(usuario));
 	}
 
 	unsetUsuario() {
-		sessionStorage.setItem(Configs.storageKeys.usuario, "");
+		localStorage.setItem(Configs.storageKeys.usuario, "");
 	}
 
 	getUsuario(): Cliente {
-		return JSON.parse(sessionStorage.getItem(Configs.storageKeys.usuario));
+		return JSON.parse(localStorage.getItem(Configs.storageKeys.usuario));
 	}
 
 }

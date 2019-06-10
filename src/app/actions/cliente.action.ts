@@ -49,7 +49,11 @@ export async function fetchUsuario(loginService: LoginService, usuarioService: U
 			let response	= await usuarioService.getData(token);
 			if (response.success) {
 				usuarioService.setUsuario(response.data);
-				store.dispatch(new ReceiveFetch);
+				store.dispatch(new ReceiveCliente({
+					isFetching: false,
+					didInvalidate: false,
+					data: response.data
+				}));
 				return response.data;
 			}
 		}
