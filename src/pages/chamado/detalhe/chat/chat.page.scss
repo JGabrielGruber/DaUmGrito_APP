@@ -1,0 +1,91 @@
+.container {
+	position: fixed;
+	bottom: 4.4%;
+	right: 3.9%;
+	width: 300px;
+	height: 500px;
+	padding: 0;
+	background-color: #FFF;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+}
+
+.container-header {
+	position: relative;
+	display: flex;
+	height: 10%;
+	background-color: #2F353A;
+}
+
+.container-header-title {
+	margin: auto 10px;
+	width: 90%;
+	display: flex;
+	color: #FFF;
+	font-size: 14px;
+}
+
+.container-header-buttons {
+	margin: auto 2px;
+	width: 10%;
+}
+
+.container-body {
+	height: 90%;
+}
+
+.container-messages {
+	overflow-y: auto;
+	height: 88%;
+}
+
+.container-messages-line {
+	position: relative;
+	display: flex;
+	width: 100%;
+}
+
+.container-messages-sender {
+	background-color: #2F353A;
+	color: #F1F1F1;
+	margin: 5px 10px;
+	margin-left: auto;
+	max-width: 80%;
+	min-width: 40%;
+	padding: 10px;
+}
+
+.container-messages-receptor {
+	background-color: #FAFAFA;
+	margin: 5px 10px;
+	margin-right: auto;
+	max-width: 80%;
+	min-width: 40%;
+	padding: 10px;
+}
+
+.container-messages-sender .container-messages-time {
+	text-align: right;
+}
+
+.container-messages-receptor .container-messages-time {
+	text-align: left;
+}
+
+.container-messages-time {
+	font-size: 9px;
+}
+
+.container-input {
+	position: relative;
+	display: flex;
+	height: 10%;
+	background-color: #F1F1F1;
+}
+
+.angular-with-newlines {
+	white-space: pre-wrap;
+}
+
+p {
+	margin: 0;
+}

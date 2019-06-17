@@ -25,9 +25,7 @@ export class DetalhePage implements OnInit {
 		});
 	}
 
-	ngOnInit() {
-		this.chamado.timestamp = "2012-12-15T13:47:20.789"
-	}
+	ngOnInit() {}
 
 	async obterChamado(id: string): Promise<void> {
 		let token = await this.loginService.getToken();
@@ -41,6 +39,10 @@ export class DetalhePage implements OnInit {
 
 	edit() {
 		this.router.navigate(['/home/chamado/formulario'], { state: { chamado: this.chamado } });
+	}
+
+	chat() {
+		this.router.navigate(['/home/chamado/detalhe/chat'], { state: { chamado: this.chamado } });
 	}
 
 }

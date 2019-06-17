@@ -34,4 +34,10 @@
 		<br />
 		Última atualização: {{ chamado.timeupdate }}
 	</p>
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="chat()"
+		*ngIf="chamado.responsavel.cpf">
+		<ion-fab-button>
+			<ion-icon name="chatbubbles"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
 </ion-content>

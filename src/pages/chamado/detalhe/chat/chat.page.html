@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-toolbar color="light">
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title *ngIf="chamado.responsavel">{{ chamado.responsavel.nome }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<div id="chatMensagens" class="container-messages" *ngIf="(resolucoes$|async).data">
+		<div class="container-messages-line" *ngFor="let mensagem of (resolucoes$|async).data.resolucoes">
+			<div class="container-messages-sender" *ngIf="mensagem.level == 'cliente'">
+				<div class="container-messages-content">
+					<p class="angular-with-newlines">{{ mensagem.conteudo }}</p>
+				</div>
+				<div class="container-messages-time" *ngIf="!mensagem.pendente">
+					{{ mensagem.timestamp }}
+				</div>
+				<div class="container-messages-time" *ngIf="mensagem.pendente">
+					<ion-icon slot="icon-only" name="time"></ion-icon>
+				</div>
+			</div>
+			<div class="container-messages-receptor" *ngIf="mensagem.level == 'agente'">
+				<div class="container-messages-content">
+					<p class="angular-with-newlines">{{ mensagem.conteudo }}</p>
+				</div>
+				<div class="container-messages-time" *ngIf="!mensagem.pendente">
+					{{ mensagem.timestamp }}
+				</div>
+				<div class="container-messages-time" *ngIf="mensagem.pendente">
+					<ion-icon slot="icon-only" name="time"></ion-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form #mensagemForm="ngForm">
+		<div class="container-input" *ngIf="chamado.status != 'Concluido'">
+			<ion-textarea name="conteudo" class="form-control" placeholder="Mensagem..."
+				[(ngModel)]="conteudo" required style="width: 80%; height: 100%;"></ion-textarea>
+			<ion-button (click)="send()" expand="full" fill="clear"
+				style="margin: auto" [disabled]="!mensagemForm.form.valid">
+				<ion-icon slot="icon-only" name="send"></ion-icon>
+			</ion-button>
+		</div>
+	</form>
+</ion-content>

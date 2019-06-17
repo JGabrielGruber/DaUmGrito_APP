@@ -8,19 +8,23 @@ import { IonicModule } from '@ionic/angular';
 import { DetalhePage } from './detalhe.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: DetalhePage
-  }
+	{
+		path: '',
+		component: DetalhePage
+	},
+	{
+		path: 'chat',
+		loadChildren: './chat/chat.module#ChatPageModule'
+	},
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [DetalhePage]
+	imports: [
+		CommonModule,
+		FormsModule,
+		IonicModule,
+		RouterModule.forChild(routes)
+	],
+	declarations: [DetalhePage]
 })
-export class DetalhePageModule {}
+export class DetalhePageModule { }

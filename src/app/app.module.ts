@@ -18,6 +18,7 @@ import { chamadoRedcuers } from './reducers/chamado.reducer';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { resolucaoReducers } from './reducers/resolucao.reducer';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -30,7 +31,8 @@ import { AppRoutingModule } from './app-routing.module';
 		StoreModule.forRoot({
 			'login': loginReducers,
 			'cliente': clienteReducers,
-			'chamados': chamadoRedcuers
+			'chamados': chamadoRedcuers,
+			'resolucoes': resolucaoReducers
 		}),
 		StoreDevtoolsModule.instrument({
 			maxAge: 10
