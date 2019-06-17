@@ -26,6 +26,7 @@ export class ChatPage implements OnInit {
 	resolucoes$:	Observable<ResolucoesReducer>;
 	usuario$:		Observable<ClienteReducer>;
 	conteudo:		string;
+	url:			string;
 
 	constructor(
 		public route: ActivatedRoute,
@@ -67,9 +68,18 @@ export class ChatPage implements OnInit {
 	}
 
 	async syncChat() {
+		if (!this.url) {
+			this.url = document.URL;
+		}
 		setTimeout(() => {
-			ResolucoesActions.fetchResolucoes(this.resolucoesService, this.loginService, this.store, this.chamado._id);
-			this.syncChat();
+			console.log(document.URL);
+			
+			if (document.URL == this.url) {
+				ResolucoesActions.fetchResolucoes(this.resolucoesService, this.loginService, this.store, this.chamado._id);
+				this.syncChat();
+			} else {
+				this.store.dispatch(new ResolucoesActions.UnsetResolucoes());
+			}
 		}, 3000);
 	}
 
