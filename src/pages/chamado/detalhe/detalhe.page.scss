@@ -4,14 +4,22 @@ ion-text {
 	height: auto;
 }
 
-p.descricao {
+h4 {
+	margin: auto 5%;
+	margin-top: 20px;
+}
+
+.descricao {
 	width: 95%;
-	margin: 0 5%;
+	margin: 2% 5%;
+	font-size: medium;
+	color: #414141;
 }
 
 p.data {
 	width: 90%;
-	margin: 0 10px;
+	margin: 20px 5%;
 	text-align: end;
-	font-size: 12px;
+	font-size: small;
+	color: #414141;
 }

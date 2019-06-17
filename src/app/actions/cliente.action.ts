@@ -79,7 +79,7 @@ export async function postCliente(clienteService: ClienteService, store: any, cl
 	});
 	if (!isFetching) {
 		store.dispatch(new RequestCliente());
-		let result = await clienteService.post(cliente);
+		let result = await clienteService.post(cliente, {}, "Cadastro realizado!");
 		if (result.success) {
 			store.dispatch(new ReceiveCliente({ isFetching: false, didInvalidate: false, data: cliente }));
 		} else {

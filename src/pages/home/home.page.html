@@ -1,7 +1,7 @@
 <ion-menu side="start" menuId="sideMenu">
 	<ion-header>
-		<ion-toolbar color="light">
-			<ion-item lines="none">
+		<ion-toolbar color="dark">
+			<ion-item lines="none" color="dark">
 				<ion-avatar slot="start" *ngIf="(usuario$ | async).data.foto">
 					<img [src]="(usuario$ | async).data.foto" />
 				</ion-avatar>

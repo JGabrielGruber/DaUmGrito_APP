@@ -38,3 +38,11 @@ ion-menu ion-content, ion-menu ion-item, ion-menu ion-list.list-md {
 .noCP {
 	text-transform: none;
 }
+
+input, textarea, p, ion-label, h1, h2, h3, h4, h5, h6, span {
+	color: $text-dark;
+}
+
+span ion-icon {
+	color: $light;
+}

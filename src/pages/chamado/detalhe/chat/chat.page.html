@@ -1,7 +1,7 @@
 <ion-header>
-	<ion-toolbar color="light">
+	<ion-toolbar color="dark">
 		<ion-buttons slot="start">
-			<ion-back-button></ion-back-button>
+			<ion-back-button color="light"></ion-back-button>
 		</ion-buttons>
 		<ion-title *ngIf="chamado.responsavel">{{ chamado.responsavel.nome }}</ion-title>
 	</ion-toolbar>
@@ -11,7 +11,7 @@
 		<div class="container-messages-line" *ngFor="let mensagem of (resolucoes$|async).data.resolucoes">
 			<div class="container-messages-sender" *ngIf="mensagem.level == 'cliente'">
 				<div class="container-messages-content">
-					<p class="angular-with-newlines">{{ mensagem.conteudo }}</p>
+					<p class="angular-with-newlines light">{{ mensagem.conteudo }}</p>
 				</div>
 				<div class="container-messages-time" *ngIf="!mensagem.pendente">
 					{{ mensagem.timestamp }}

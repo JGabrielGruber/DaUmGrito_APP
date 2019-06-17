@@ -15,7 +15,7 @@ export class LoginService extends Service<Login>{
 	constructor(
 		public http: HttpService
 	) {
-		super(`${Configs.url}oauth`, http, "Sucesso!");
+		super(`${Configs.url}oauth`, http);
 	}
 
 	async auth(login: Login): Promise<Http> {

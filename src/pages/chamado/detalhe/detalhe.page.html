@@ -1,7 +1,7 @@
 <ion-header>
-	<ion-toolbar color="light">
+	<ion-toolbar color="dark">
 		<ion-buttons slot="start">
-			<ion-back-button></ion-back-button>
+			<ion-back-button color="light"></ion-back-button>
 		</ion-buttons>
 		<ion-title>Detalhes</ion-title>
 		<ion-buttons slot="end">
@@ -14,19 +14,16 @@
 </ion-header>
 <ion-content *ngIf="chamado._id">
 	<img *ngIf="chamado.foto" [src]="chamado.foto">
-	<br />
-	<br />
-	<ion-title>{{ chamado.titulo }}</ion-title>
+	<h4>{{ chamado.titulo }}</h4>
 	<p class="descricao">
 		{{ chamado.descricao }}
 	</p>
-	<br />
-	<br />
-	<ion-title>Atendente</ion-title>
+	<h4>Atendente</h4>
 	<p class="descricao">
 		{{ chamado.responsavel.nome }}
 	</p>
-	<br />
+	<h4>Local</h4>
+	<a class="descricao" href="https://www.google.com/maps/search/?api=1&query={{ chamado.localizacao.latitude }}, {{ chamado.localizacao.longitude }}">Abrir local no mapa</a>
 	<p class="data" *ngIf="chamado.status">
 		Estado do chamado: {{ chamado.status }}
 		<br />

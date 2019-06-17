@@ -77,7 +77,7 @@ export class FormularioPage implements OnInit{
 				await this.getLocation(1000);
 				if (this.chamado.localizacao) {
 					this.isFetching = true;
-					if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()))).success) {
+					if ((await this.chamadoService.post(this.chamado, (await this.loginService.getToken()), "Chamado aberto!")).success) {
 						ChamadoActions.fetchChamados(this.chamadoService, this.loginService, this.store);
 						this.location.back();
 					}
@@ -85,7 +85,7 @@ export class FormularioPage implements OnInit{
 				}
 			} else {
 				this.isFetching = true;
-				if ((await this.chamadoService.put( this.chamado._id, this.chamado, (await this.loginService.getToken()))).success) {
+				if ((await this.chamadoService.put( this.chamado._id, this.chamado, (await this.loginService.getToken()), "Chamado atualizado")).success) {
 					ChamadoActions.fetchChamados(this.chamadoService, this.loginService, this.store);
 					this.location.back();
 				}
@@ -105,7 +105,7 @@ export class FormularioPage implements OnInit{
 		if (!this.isFetching) {
 			this.alertService.confirm("ATENÇÃO!", "Você realmente deseja remover este chamado?", async () => {
 				this.isFetching = true;
-				if ((await this.chamadoService.delete(this.chamado._id, (await this.loginService.getToken()))).success) {
+				if ((await this.chamadoService.delete(this.chamado._id, (await this.loginService.getToken()), "Chamado removido")).success) {
 					this.router.navigateByUrl('/home/chamado');
 				}
 				this.isFetching = false;

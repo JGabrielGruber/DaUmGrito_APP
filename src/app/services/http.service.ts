@@ -19,7 +19,7 @@ export class HttpService {
 
 	}
 
-	public get(url: string, token = null): Promise<Http> {
+	public get(url: string, token=null): Promise<Http> {
 		//this.spinnerSrv.Show("Carregando os dados...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
@@ -44,7 +44,7 @@ export class HttpService {
 		});
 	}
 
-	public post(url: string, model: any, token = null, message = 'Adicionado com sucesso!'): Promise<Http> {
+	public post(url: string, model: any, token = null, message?:string): Promise<Http> {
 		//this.spinnerSrv.Show("Salvando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
@@ -56,15 +56,14 @@ export class HttpService {
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });
-						this.alertSrv.toast(message, 'bottom');
+						if (message) {
+							this.alertSrv.toast(message, 'bottom');
+						}
 					}, err => {
 						this.spinnerSrv.Hide();
-						console.log(err);
-						if (err.status == 400) {
-							this.alertSrv.alert('Atenção', err.error.error);
-						}
-						else if (err.status == 404) {
-							this.alertSrv.alert('Informação', err.error.error);
+						console.error(err);
+						if (err.error.message) {
+							this.alertSrv.toast(err.error.message, 'bottom');
 						}
 						else
 							this.alertSrv.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom');
@@ -78,7 +77,7 @@ export class HttpService {
 		});
 	}
 
-	public put(url: string, model: any, token = null,): Promise<Http> {
+	public put(url: string, model: any, token = null, message?:string): Promise<Http> {
 		//this.spinnerSrv.Show("Atualizando informações...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
@@ -90,18 +89,14 @@ export class HttpService {
 					.subscribe(_res => {
 						this.spinnerSrv.Hide();
 						resolve({ success: true, data: _res, err: undefined });
+						if (message) {
+							this.alertSrv.toast(message, 'bottom');
+						}
 					}, err => {
 						this.spinnerSrv.Hide();
-						console.log(err);
-						if (err.status == 400) {
-							let msg = '';
-							err.error.validation.forEach(_err => {
-								msg += `<li>${_err.message}</li>`;
-							});
-							this.alertSrv.alert(err.error.message, msg);
-						}
-						else if (err.status == 404) {
-							this.alertSrv.alert('Informação', err.error.message);
+						console.error(err);
+						if (err.error.message) {
+							this.alertSrv.toast(err.error.message, 'bottom');
 						}
 						else
 							this.alertSrv.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom');
@@ -115,7 +110,7 @@ export class HttpService {
 		});
 	}
 
-	public delete(url: string, token: any = null): Promise<Http> {
+	public delete(url: string, token: any = null, message?:string): Promise<Http> {
 		//this.spinnerSrv.Show("Removendo registro...");
 		return new Promise((resolve) => {
 			if (this.networkSrv.IsOnline) {
@@ -126,10 +121,18 @@ export class HttpService {
 				this.http.delete(url, { headers }).subscribe(_res => {
 					this.spinnerSrv.Hide();
 					resolve({ success: true, data: _res, err: undefined });
+					if (message) {
+						this.alertSrv.toast(message, 'bottom');
+					}
 				}, err => {
 					this.spinnerSrv.Hide();
-					this.alertSrv.toast('Não foi possível realizar a exclusão do registro!', 'bottom');
-					resolve({ success: true, data: undefined, err: err });
+					console.error(err);
+					if (err.error.message) {
+						this.alertSrv.toast(err.error.message, 'bottom');
+					}
+					else
+						this.alertSrv.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom');
+					resolve({ success: false, data: undefined, err: err });
 				});
 			}
 			else {
