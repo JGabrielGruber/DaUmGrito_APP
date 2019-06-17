@@ -18,10 +18,12 @@
 	<p class="descricao">
 		{{ chamado.descricao }}
 	</p>
-	<h4>Atendente</h4>
-	<p class="descricao">
-		{{ chamado.responsavel.nome }}
-	</p>
+	<div *ngIf="chamado.responsavel">
+		<h4>Atendente</h4>
+		<p class="descricao">
+			{{ chamado.responsavel.nome }}
+		</p>
+	</div>
 	<h4>Local</h4>
 	<a class="descricao" href="https://www.google.com/maps/search/?api=1&query={{ chamado.localizacao.latitude }}, {{ chamado.localizacao.longitude }}">Abrir local no mapa</a>
 	<p class="data" *ngIf="chamado.status">
@@ -32,7 +34,7 @@
 		Última atualização: {{ chamado.timeupdate }}
 	</p>
 	<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="chat()"
-		*ngIf="chamado.responsavel.cpf">
+		*ngIf="chamado.responsavel">
 		<ion-fab-button>
 			<ion-icon name="chatbubbles"></ion-icon>
 		</ion-fab-button>
